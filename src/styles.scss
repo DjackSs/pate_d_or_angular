@@ -1,7 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
-@import './app/component/loader/loader/loader.component.scss';
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+@import "./app/components/loader/loader.component.scss";
 
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
 
-
+@import "./app/custom";
