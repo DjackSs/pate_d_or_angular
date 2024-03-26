@@ -1,5 +1,5 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
-import Lottie, { AnimationItem } from 'lottie-web';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AnimationOptions, LottieComponent } from 'ngx-lottie';
 
 @Component({
@@ -7,17 +7,22 @@ import { AnimationOptions, LottieComponent } from 'ngx-lottie';
   standalone: true,
   imports: [LottieComponent],
   templateUrl: './loader.component.html',
-  styleUrl: './loader.component.scss'
+  styleUrl: './loader.component.scss',
 })
 export class LoaderComponent implements OnInit {
-
-   options: AnimationOptions = {    
-    path: '/assets/lottie/lottie-loader.json', 
+  options: AnimationOptions = {
+    path: '/assets/lottie/lottie-loader.json',
     autoplay: true,
-    loop: true
-  };  
+    loop: true,
+  };
 
-  constructor() { }  
+  constructor(private router: Router) {}
 
-  ngOnInit(): void {  }
+  ngOnInit(): void {
+    const delay = 3000;
+
+    setTimeout(() => {
+      this.router.navigateByUrl('/home');
+    }, delay);
+  }
 }
