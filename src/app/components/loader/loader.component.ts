@@ -22,7 +22,7 @@ export class LoaderComponent implements OnInit {
     const delay = 3000;
 
     setTimeout(() => {
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/resa');
     }, delay);
   }
 }
