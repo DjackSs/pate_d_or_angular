@@ -31,6 +31,9 @@ export class LoginFormComponent {
         this.user = user;
         console.log(user);
         console.log('Authentication ok redirection...');
+
+        this._router.navigateByUrl("restaurants");
+        
       } else {
         this.authenticationResult = false;
       }

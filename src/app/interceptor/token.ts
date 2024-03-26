@@ -1,22 +1,35 @@
 import { HttpInterceptorFn  } from "@angular/common/http";
+import { StorageService } from "../services/storage.service";
+import { inject } from '@angular/core';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => 
 {
     // On ajoute des headers à la requête
-    //const storageService: StorageService = inject(StorageService);
-    //const token = storageService.getToken()
+    const storageService: StorageService = inject(StorageService);
 
-    //a suprimer
-    const token = "12345AZERT";
-  
-    const clone = req.clone
-    ({
-      setHeaders: 
-      {
-        'token': token
-      }
-    });
-  
-    return next(clone);
+    const token = storageService.getToken()
+
+    if(token)
+    {
+        const clone = req.clone
+        ({
+            setHeaders: 
+            {
+                'token': token
+            }
+        });
+
+        return next(clone);
+
+    }
+    else
+    {
+
+        return next(req);
+
+    } 
+
+
+
   };
   
