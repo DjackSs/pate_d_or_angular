@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { ActivatedRouteSnapshot, CanActivateFn, GuardResult, MaybeAsync, Router, RouterStateSnapshot, Routes } from '@angular/router';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 
