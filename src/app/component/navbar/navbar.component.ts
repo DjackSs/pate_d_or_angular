@@ -8,13 +8,12 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterModule, CommonModule],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.scss'
+  styleUrl: './navbar.component.scss',
 })
 export class NavbarComponent {
-
   public menuRoutes: IMenuRoute[] = [
-    { path: 'restaurant-list', libelle: 'Accueil' },
-  ]
+    { path: 'restaurants', libelle: 'Accueil' },
+  ];
 
   // constructor(private logoutService: AuthService) {
 
@@ -23,5 +22,4 @@ export class NavbarComponent {
   // public logout(): void {
   //   this.logoutService.logout();
   // }
-
 }
