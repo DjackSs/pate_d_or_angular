@@ -1,0 +1,30 @@
+/************** VARIABLES **************/
+:root {
+  --bs-font-family-base: "Mont-serrat", sans-serif;
+  --bs-font-family-fairplay: "Playfair Display", sans-serif;
+}
+
+/************** CLASS CUSTOM OVERRIDING BOOTSTRAP **************/
+.custom-container-600 {
+  max-width: 600px;
+}
+
+/************** GENERIC CUSTOM OVERRIDING BOOTSTRAP **************/
+body {
+  font-family: var(--bs-font-family-base);
+  letter-spacing: 0.5px;
+}
+
+h1 {
+  font-family: var(--bs-font-family-fairplay);
+}
+
+input {
+  font-family: var(--bs-font-family-base);
+  letter-spacing: 0.5px;
+}
+
+button {
+  font-family: var(--bs-font-family-base);
+  letter-spacing: 0.5px;
+}
