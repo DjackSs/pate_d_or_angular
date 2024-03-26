@@ -1,0 +1,11 @@
+<section *ngIf="restaurants$ | async as restaurants else loading">
+
+    <h1>Restaurant</h1>
+    
+    <app-restaurant-card *ngFor="let restaurant of restaurants" [restaurant]="restaurant"></app-restaurant-card>
+   
+</section>
+
+<ng-template #loading>
+    <h1>Loading</h1>
+</ng-template>

@@ -18,4 +18,9 @@ export class StorageService {
   public delete(name: string): void {
     localStorage.removeItem(name);
   }
+
+  public getToken():string | null
+  {
+    return localStorage.getItem("token");
+  }
 }
