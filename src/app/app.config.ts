@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
 
 import { routes } from './app.routes';
+import { provideHttpClient } from '@angular/common/http';
 
 export const appConfig: ApplicationConfig = {
   providers: 
@@ -11,4 +12,5 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     importProvidersFrom(HttpClientModule)
   ]
+
 };

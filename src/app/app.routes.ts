@@ -1,4 +1,6 @@
+<<<<<<< HEAD
 import { ActivatedRouteSnapshot, CanActivateFn, GuardResult, MaybeAsync, Router, RouterStateSnapshot, Routes } from '@angular/router';
+import { LoginFormComponent } from './components/login-form/login-form.component';
 
 /*
 const isConnected: CanActivateFn =
@@ -24,6 +26,7 @@ export const routes: Routes =
         path: "restaurants",
         //canActivate: [isConnected],
         loadComponent: ()=> import('./component/restaurant-list/restaurant-list.component').then(f => f.RestaurantListComponent)
-    }
+    },
+    { path: 'login', component: LoginFormComponent }
         
 ];
