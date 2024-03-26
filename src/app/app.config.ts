@@ -1,16 +1,23 @@
-import { ApplicationConfig } from '@angular/core';
+import {
+  HttpClientModule,
+  provideHttpClient,
+  withInterceptors,
+} from '@angular/common/http';
+import { ApplicationConfig, importProvidersFrom } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
-import { importProvidersFrom } from '@angular/core';
 
+import player from 'lottie-web';
+import { provideLottieOptions } from 'ngx-lottie';
 import { routes } from './app.routes';
-import { provideHttpClient } from '@angular/common/http';
+import { tokenInterceptor } from './interceptor/token';
 
 export const appConfig: ApplicationConfig = {
-  providers: 
-  [
+  providers: [
     provideRouter(routes),
-    importProvidersFrom(HttpClientModule)
-  ]
-
+    importProvidersFrom(HttpClientModule),
+    provideLottieOptions({
+      player: () => player,
+    }),
+    provideHttpClient(withInterceptors([tokenInterceptor])),
+  ],
 };

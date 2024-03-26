@@ -28,5 +28,4 @@ export const routes: Routes =
         canActivate: [isConnected],
         loadComponent: ()=> import('./components/restaurant-list/restaurant-list.component').then(f => f.RestaurantListComponent)
     }
-        
 ];
