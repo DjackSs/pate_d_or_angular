@@ -2,21 +2,48 @@
 :root {
   --bs-font-family-base: "Mont-serrat", sans-serif;
   --bs-font-family-fairplay: "Playfair Display", sans-serif;
+  --bs-color-dark: #383c40;
+  --bs-color-ochre: #d08209cc;
+  --bs-color-peachfuzz: #ffdab9;
 }
 
-/************** CLASS CUSTOM OVERRIDING BOOTSTRAP **************/
+/************** CUSTOM CLASS TO OVERRIDE BOOTSTRAP **************/
 .custom-container-600 {
   max-width: 600px;
 }
+.custom-container-250 {
+  max-width: 250px;
+}
 
-/************** GENERIC CUSTOM OVERRIDING BOOTSTRAP **************/
+.fairplay-font {
+  font-family: var(--bs-font-family-fairplay);
+}
+
+.color-custom-dark {
+  color: var(--bs-color-dark);
+}
+.color-custom-ochre {
+  color: var(--bs-color-ochre);
+}
+.color-custom-peachfuzz {
+  color: var(--bs-color-peachfuzz);
+}
+
+.bg-custom-dark {
+  background-color: var(--bs-color-dark);
+}
+.bg-custom-ochre {
+  background-color: var(--bs-color-ochre);
+}
+.bg-custom-peachfuzz {
+  background-color: var(--bs-color-peachfuzz);
+}
+
+/************** CUSTOM GENERIC TO OVERRIDE BOOTSTRAP **************/
 body {
   font-family: var(--bs-font-family-base);
   letter-spacing: 0.5px;
-}
-
-h1 {
-  font-family: var(--bs-font-family-fairplay);
+  background-color: var(--bs-color-dark);
 }
 
 input {

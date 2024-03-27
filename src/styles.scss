@@ -1,6 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+
+/************** GOOGLE FONTS **************/
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
+
 @import "./app/components/loader/loader.component.scss";
+
+/************** CUSTOM COLORS ADDING TO BOOTSTRAP THEME COLOR **************/
+@import "bootstrap/scss/bootstrap";
+// Définir vos propres couleurs personnalisées (après avoir importer $theme-colors de Bootstrap
+$custom-colors: (
+  custom-dark: #383c40,
+  custom-ochre: #d08209cc,
+  custom-peachfuzz: #ffdab9,
+  // Ajoutez d'autres couleurs personnalisées si nécessaire
+);
+
+// Fusionnez vos couleurs personnalisées avec $theme-colors de Bootstrap (l'importer à nouveau après)
+$theme-colors: map-merge($theme-colors, $custom-colors);
 
 /* Importing Bootstrap SCSS file. */
 @import "bootstrap/scss/bootstrap";
