@@ -7,7 +7,7 @@ export const tokenInterceptor: HttpInterceptorFn = (req, next) =>
     // On ajoute des headers à la requête
     const storageService: StorageService = inject(StorageService);
 
-    const token = storageService.getToken()
+    const token = storageService.get("token");
 
     if(token)
     {
