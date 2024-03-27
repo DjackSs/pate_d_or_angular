@@ -1,20 +1,24 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/">Brew App</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-
-              <li *ngFor="let menuRoute of menuRoutes" class="nav-item">
-                  <a class="nav-link" [routerLink]="menuRoute.path">{{ menuRoute.libelle }}</a>
-              </li>
-
-          </ul>
-
-          <button (click)="logout()" type="button" class="btn"><i class="fa-solid fa-power-off me-1"></i>Deconnexion</button>
-      </div>
+<div class="container-bottom-nav d-flex justify-content-center align-items-center position-fixed bottom-0 w-100 mt-4">
+  <div class="row">
+    <!-- Reservation -->
+    <a class="col" href="/resa">
+      <i class="bi bi-envelope-at-fill"></i>
+    </a>
+    <!-- Tables -->
+    <a class="col" href="/table">
+      <i class="bi bi-columns-gap"></i>
+    </a>
+    <!-- Home (restaurants) -->
+    <a class="col" href="/restaurants">
+      <i class="bi bi-app"></i>
+    </a>
+    <!-- Orders -->
+    <a class="col" href="/commandes">
+      <i class="bi bi-journals"></i>
+    </a>
+    <!-- Bill -->
+    <a class="col" href="/commandes/bill/{id}">
+      <i class="bi bi-cash-coin"></i>
+    </a>
   </div>
-</nav>
+</div>
