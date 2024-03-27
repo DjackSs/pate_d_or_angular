@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Restaurant } from '../../entities/Restaurant';
+import { RestaurantService } from '../../services/restaurant.service';
 
 @Component({
   selector: 'app-restaurant-card',
@@ -14,15 +15,12 @@ export class RestaurantCardComponent
   @Input()
   public restaurant!:Restaurant;
 
-  constructor()
-  {
-  }
+  constructor(private restaurantService: RestaurantService){}
 
   
-  public enterRestaurant(restaurant:Restaurant)
+  public enterRestaurant(restaurant:Restaurant):void
   {
-    //enregistre le retaurant dans le local storage
-
+    this.restaurantService.saveRestaurant(restaurant);
 
   }
 

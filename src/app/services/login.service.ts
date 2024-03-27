@@ -8,8 +8,12 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService {
-  private endpoint: string = 'http://localhost:8080';
+export class LoginService 
+{
+  private readonly endpoint: string = 'http://localhost:8080';
+  private readonly userKey:string = "user";
+  private readonly tokenKey:string = "token";
+
   private _currentUser?: User;
   private _isAuthenticated$ = new Subject<boolean>();
 
@@ -27,7 +31,7 @@ export class LoginService {
   }
 
   public isAuthenticated(): boolean {
-    return this._storageService.get('token') != null;
+    return this._storageService.get(this.tokenKey) != null;
   }
 
   public logIn(email: string, password: string): Observable<User | null> {
@@ -41,10 +45,10 @@ export class LoginService {
           if (user) {
             this._currentUser = user;
             this._storageService.set(
-              'USER_KEY',
+              this.userKey,
               JSON.stringify(this._currentUser)
             );
-            this._storageService.set('token', this._currentUser.token);
+            this._storageService.set(this.tokenKey, this._currentUser.token);
           }
 
           this.notifyAuthenticationState(true);
@@ -57,4 +61,15 @@ export class LoginService {
         })
       );
   }
+
+  //----------------------------------
+  //logout
+
+  public logout():void
+  {
+    this._storageService.delete(this.userKey);
+    this._storageService.delete(this.tokenKey);
+  }
+
+
 }
