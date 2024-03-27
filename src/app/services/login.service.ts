@@ -8,6 +8,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
+
 export class LoginService 
 {
   private readonly endpoint: string = 'http://localhost:8080';
