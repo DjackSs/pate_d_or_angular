@@ -21,8 +21,9 @@ export class LoaderComponent implements OnInit {
   ngOnInit(): void {
     const delay = 2000;
 
-    setTimeout(() => {
-      this.router.navigateByUrl('/login');
+    setTimeout(() => 
+    {
+      this.router.url == "/" ? this.router.navigateByUrl("/login") : this.router.navigateByUrl(this.router.url);
     }, delay);
   }
 }
