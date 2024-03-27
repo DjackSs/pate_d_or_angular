@@ -19,7 +19,7 @@ export class LoaderComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    const delay = 2000;
+
 
     setTimeout(() => 
     {
