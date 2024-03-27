@@ -45,4 +45,12 @@ export const routes: Routes = [
         (f) => f.RestaurantListComponent
       ),
   },
+  {
+    path: 'bills',
+    canActivate: [isConnected],
+    loadComponent: () =>
+      import('./components/bill/bill.component').then(
+        (f) => f.BillComponent
+      ),
+  },
 ];

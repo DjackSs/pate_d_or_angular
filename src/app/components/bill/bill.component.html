@@ -1,0 +1,18 @@
+<app-logout></app-logout>
+
+<section *ngIf="bills$ | async as bills" class="container text-light d-flex flex-column justify-content-center align-items-center gap-4 position-absolute top-50 start-50 translate-middle">
+  <h1 class="h1">Commandes soldées</h1>
+
+  <div class="container">
+    <div class="custom-container-600 mx-auto row" *ngFor="let table of getDistinctTables(bills)">
+      <div class="col col-md-6 border">
+        <h2>Table n°{{ table }}</h2>
+        <ul>
+          <li *ngFor="let bill of getBillsForTable(bills, table)">
+            {{ bill.dishName }} - {{ bill.dishPrice | currency:'EUR':'symbol':'1.2-2' }}
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>

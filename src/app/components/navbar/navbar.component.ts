@@ -20,6 +20,7 @@ export class NavbarComponent {
     { path: 'resa', libelle: 'Réservation' },
     { path: 'table', libelle: 'Table' },
     { path: 'commandes', libelle: 'Commandes' },
+    { path: 'bills', libelle: 'Facturation' },
   ];
 
   constructor() {
