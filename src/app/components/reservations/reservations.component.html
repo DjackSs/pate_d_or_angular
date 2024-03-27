@@ -1,4 +1,5 @@
 <h1 class="playfair-font color-custom-peachfuzz h1 text-center mt-4">
+  <!-- Restaurant endpoint missing, to deal to be dynamic -->
   Nom du restaurant
 </h1>
 
@@ -9,13 +10,13 @@
     *ngIf="reservations$ | async as reservations; else loading"
     class="container d-flex flex-column gap-4"
   >
-    <p class="h4 text-center fw-light fst-italic">Réservations en cours</p>
+    <p class="h4 text-center fw-light fst-italic">Réservations en cours ⏳</p>
     <div class="container">
       <div class="row">
         <div *ngFor="let reservation of reservations" class="col-12">
           <p
             *ngIf="reservation.state === 'hold'"
-            class="d-flex text-center gap-1 border rounded p-2"
+            class="border-custom-peachfuzz d-flex align-items-center gap-1 rounded p-2"
           >
             <span
               >{{ reservation.user.name }} {{ reservation.user.lastname }}</span
@@ -27,13 +28,13 @@
             <span class="d-flex justify-content-center gap-1 ms-auto">
               <button
                 class="btn btn-success text-light"
-                (click)="granReservation(reservation)"
+                (click)="yesToReservation(reservation)"
               >
                 ✔
               </button>
               <button
                 class="btn btn-danger text-light"
-                (click)="denyReservation(reservation)"
+                (click)="noToReservation(reservation)"
               >
                 𝗫
               </button>
@@ -48,13 +49,13 @@
     *ngIf="reservations$ | async as reservations; else loading"
     class="container d-flex flex-column gap-4"
   >
-    <p class="h4 text-center fw-light fst-italic">Réservations validées</p>
+    <p class="h4 text-center fw-light fst-italic">Réservations validées ✓</p>
     <div class="container">
       <div class="row">
         <div *ngFor="let reservation of reservations" class="col-12">
           <p
             *ngIf="reservation.state === 'gran'"
-            class="d-flex gap-1 border rounded p-2"
+            class="border-custom-peachfuzz d-flex align-items-center gap-1 rounded p-2"
           >
             <span
               >{{ reservation.user.name }} {{ reservation.user.lastname }}</span
@@ -63,10 +64,12 @@
             <span>
               {{ reservation.reservationTime | date : "dd/MM/yyy à HH:mm" }}
             </span>
-            <span class="d-flex gap-1 ms-auto">
-              <button></button>
-              <button></button>
-            </span>
+            <button
+              class="d-flex gap-1 btn btn-custom-peachfuzz ms-auto"
+              (click)="handleReservationTable()"
+            >
+              Gérer 🪑
+            </button>
           </p>
         </div>
       </div>

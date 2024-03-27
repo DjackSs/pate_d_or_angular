@@ -39,6 +39,10 @@
   background-color: var(--bs-color-peachfuzz);
 }
 
+.border-custom-peachfuzz {
+  border: 1px solid var(--bs-color-peachfuzz);
+}
+
 /************** CUSTOM GENERIC TO OVERRIDE BOOTSTRAP **************/
 body {
   font-family: var(--bs-font-family-base);
