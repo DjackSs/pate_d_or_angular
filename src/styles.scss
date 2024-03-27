@@ -2,6 +2,9 @@
 
 @import "./app/components/loader/loader.component.scss";
 
+
+/************** CUSTOM COLORS ADDING TO BOOTSTRAP THEME COLOR **************/
+@import "bootstrap/scss/bootstrap";
 // Définir vos propres couleurs personnalisées (après avoir importer $theme-colors de Bootstrap
 $custom-colors: (
   custom-dark: #383c40,
@@ -20,3 +23,4 @@ $theme-colors: map-merge($theme-colors, $custom-colors);
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+

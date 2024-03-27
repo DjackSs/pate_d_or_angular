@@ -1,10 +1,10 @@
 .container-bottom-nav {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  border-top: 1px solid #ffdab9;
   i {
-    color: #ac7625;
+    color: #ffdab9;
+    width: 24px;
+    height: 24px;
+    font-size: 45px;
   }
 }
 
