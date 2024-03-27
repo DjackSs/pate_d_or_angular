@@ -1,0 +1,33 @@
+.main-container {
+  color: white; 
+  display: flex; 
+  flex-direction: column; 
+  justify-content: center; 
+  align-items: center; 
+  gap: 1rem; 
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  width: 100%;
+
+  h1 {
+    margin-bottom: 30px;
+  }
+
+  .custom-container-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .btn-bills {
+      border: 0px solid #ffdab9;
+      background-color: #ffdab9;
+      width: 10rem;
+      height: 4vh;
+      border-radius: 5px;
+    }
+  }
+}

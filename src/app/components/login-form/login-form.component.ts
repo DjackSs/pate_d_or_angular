@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { User } from '../../entities/user';
 import { Router } from '@angular/router';
 import { LoginService } from '../../services/login.service';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-login-form',
@@ -21,7 +22,7 @@ export class LoginFormComponent {
 
   public authenticationResult?: boolean;
 
-  constructor(private _router: Router, private _loginService: LoginService) {
+  constructor(private _router: Router, private _loginService: LoginService, private navbarService: NavbarService) {
     if (this._loginService.isAuthenticated()) {
       console.log('Authentication ok redirection...');
     }
@@ -41,5 +42,11 @@ export class LoginFormComponent {
         this.authenticationResult = false;
       }
     });
+  }
+
+
+  ngOnInit(): void {
+    // Hide navbar on login page
+    this.navbarService.setShowNavbar(false);
   }
 }

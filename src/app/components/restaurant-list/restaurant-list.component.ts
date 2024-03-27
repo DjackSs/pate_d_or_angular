@@ -7,24 +7,29 @@ import { Observable } from 'rxjs';
 import { LoaderComponent } from '../loader/loader.component';
 
 import { LogoutComponent } from '../logout/logout.component';
-
+import { NavbarComponent } from '../navbar/navbar.component';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-restaurant-list',
   standalone: true,
-  imports: [RestaurantCardComponent, CommonModule, LogoutComponent, LoaderComponent],
+  imports: [
+    RestaurantCardComponent,
+    CommonModule,
+    LogoutComponent,
+    LoaderComponent,
+    NavbarComponent,
+  ],
   templateUrl: './restaurant-list.component.html',
-  styleUrl: './restaurant-list.component.scss'
+  styleUrl: './restaurant-list.component.scss',
 })
-export class RestaurantListComponent implements OnInit
-{
-  public restaurants$!:Observable<Restaurants>;
+export class RestaurantListComponent implements OnInit {
+  public restaurants$!: Observable<Restaurants>;
 
-  constructor(private restaurantService: RestaurantService){}
+  constructor(private restaurantService: RestaurantService, private navbarService: NavbarService) {}
 
-  ngOnInit()
-  {
+  ngOnInit() {
+    this.navbarService.setShowNavbar(true);
     this.restaurants$ = this.restaurantService.getRestaurants();
   }
-
 }

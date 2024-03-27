@@ -1,9 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { BillService } from '../../services/bill.service';
 import { Bill, Bills } from '../../entities/Bill';
 import { LogoutComponent } from '../logout/logout.component';
 import { CommonModule } from '@angular/common';
+import { Restaurants } from '../../entities/Restaurant';
+import { RestaurantService } from '../../services/restaurant.service';
 
 @Component({
   selector: 'app-bill',
