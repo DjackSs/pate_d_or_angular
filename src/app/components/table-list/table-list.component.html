@@ -1,0 +1,23 @@
+<section
+    *ngIf="tables$ | async as tables else loading"
+  class="container text-light d-flex flex-column justify-content-center align-items-center gap-4 position-absolute top-50 start-50 translate-middle"
+>
+  <h1 class="h1">Tables</h1>
+
+  <p class="h4 fw-light fst-italic">Choisissez votre table</p>
+
+  <div class="container">
+    <div class="custom-container-600 mx-auto row">
+      <div class="col col-md-6" *ngFor="let table of tables">
+        <div>
+            <h2>N° de table :{{table.id}}</h2>
+            <p>Places :{{table.numberPlace}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #loading>
+    <app-loader></app-loader>
+</ng-template>

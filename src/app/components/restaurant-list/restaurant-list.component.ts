@@ -4,6 +4,7 @@ import { RestaurantCardComponent } from '../restaurant-card/restaurant-card.comp
 import { Restaurants } from '../../entities/Restaurant';
 import { RestaurantService } from '../../services/restaurant.service';
 import { Observable } from 'rxjs';
+import { LoaderComponent } from '../loader/loader.component';
 
 import { LogoutComponent } from '../logout/logout.component';
 
@@ -11,7 +12,7 @@ import { LogoutComponent } from '../logout/logout.component';
 @Component({
   selector: 'app-restaurant-list',
   standalone: true,
-  imports: [RestaurantCardComponent, CommonModule, LogoutComponent],
+  imports: [RestaurantCardComponent, CommonModule, LogoutComponent, LoaderComponent],
   templateUrl: './restaurant-list.component.html',
   styleUrl: './restaurant-list.component.scss'
 })

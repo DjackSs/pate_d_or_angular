@@ -49,8 +49,14 @@ export const routes: Routes = [
     path: 'bills',
     canActivate: [isConnected],
     loadComponent: () =>
-      import('./components/bill/bill.component').then(
-        (f) => f.BillComponent
+      import('./components/bill/bill.component').then((f) => f.BillComponent),
+  },
+  {
+    path: 'tables',
+    canActivate: [isConnected],
+    loadComponent: () =>
+      import('./components/table-list/table-list.component').then(
+        (f) => f.TableListComponent
       ),
   },
 ];
