@@ -1,11 +1,20 @@
-<section *ngIf="restaurants$ | async as restaurants else loading">
+<section
+  *ngIf="restaurants$ | async as restaurants; else loading"
+  class="container text-light d-flex flex-column justify-content-center align-items-center gap-4 position-absolute top-50 start-50 translate-middle"
+>
+  <h1 class="h1">Restaurants</h1>
 
-    <h1>Restaurant</h1>
-    
-    <app-restaurant-card *ngFor="let restaurant of restaurants" [restaurant]="restaurant"></app-restaurant-card>
-   
+  <p class="h4 fw-light fst-italic">Choisissez votre équipe</p>
+
+  <div class="container">
+    <div class="custom-container-600 mx-auto row">
+      <div class="col col-md-6" *ngFor="let restaurant of restaurants">
+        <app-restaurant-card [restaurant]="restaurant"></app-restaurant-card>
+      </div>
+    </div>
+  </div>
 </section>
 
 <ng-template #loading>
-    <h1>Loading</h1>
+  <h1>Loading</h1>
 </ng-template>
