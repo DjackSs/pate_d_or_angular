@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { Reservation, Reservations } from '../../entities/reservation';
 import { ReservationService } from '../../services/reservation.service';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-reservations',
@@ -19,10 +20,13 @@ export class ReservationsComponent implements OnInit, OnDestroy {
 
   constructor(
     private _reservationService: ReservationService,
-    private _route: ActivatedRoute
+    private _route: ActivatedRoute,
+    private navbarService: NavbarService
   ) {}
 
   ngOnInit(): void {
+    this.navbarService.setShowNavbar(true);
+
     const restaurantId: string | null = this._route.snapshot.paramMap.get('id');
 
     this.reservations$ = this._reservationService.reservations$;
