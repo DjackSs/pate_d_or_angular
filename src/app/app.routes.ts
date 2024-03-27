@@ -45,4 +45,12 @@ export const routes: Routes = [
         (f) => f.RestaurantListComponent
       ),
   },
+  {
+    path: 'reservations/restaurant/:id',
+    canActivate: [isConnected],
+    loadComponent: () =>
+      import('./components/reservations/reservations.component').then(
+        (f) => f.ReservationsComponent
+      ),
+  },
 ];

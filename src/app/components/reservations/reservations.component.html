@@ -1,0 +1,78 @@
+<h1 class="playfair-font color-custom-peachfuzz h1 text-center mt-4">
+  Nom du restaurant
+</h1>
+
+<section
+  class="custom-container-600 container text-light d-flex flex-column justify-content-center align-items-center gap-4 position-absolute top-50 start-50 translate-middle"
+>
+  <article
+    *ngIf="reservations$ | async as reservations; else loading"
+    class="container d-flex flex-column gap-4"
+  >
+    <p class="h4 text-center fw-light fst-italic">Réservations en cours</p>
+    <div class="container">
+      <div class="row">
+        <div *ngFor="let reservation of reservations" class="col-12">
+          <p
+            *ngIf="reservation.state === 'hold'"
+            class="d-flex text-center gap-1 border rounded p-2"
+          >
+            <span
+              >{{ reservation.user.name }} {{ reservation.user.lastname }}</span
+            >
+            <span>-</span>
+            <span>
+              {{ reservation.reservationTime | date : "dd/MM/yyy à HH:mm" }}
+            </span>
+            <span class="d-flex justify-content-center gap-1 ms-auto">
+              <button
+                class="btn btn-success text-light"
+                (click)="granReservation(reservation)"
+              >
+                ✔
+              </button>
+              <button
+                class="btn btn-danger text-light"
+                (click)="denyReservation(reservation)"
+              >
+                𝗫
+              </button>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <article
+    *ngIf="reservations$ | async as reservations; else loading"
+    class="container d-flex flex-column gap-4"
+  >
+    <p class="h4 text-center fw-light fst-italic">Réservations validées</p>
+    <div class="container">
+      <div class="row">
+        <div *ngFor="let reservation of reservations" class="col-12">
+          <p
+            *ngIf="reservation.state === 'gran'"
+            class="d-flex gap-1 border rounded p-2"
+          >
+            <span
+              >{{ reservation.user.name }} {{ reservation.user.lastname }}</span
+            >
+            <span>-</span>
+            <span>
+              {{ reservation.reservationTime | date : "dd/MM/yyy à HH:mm" }}
+            </span>
+            <span class="d-flex gap-1 ms-auto">
+              <button></button>
+              <button></button>
+            </span>
+          </p>
+        </div>
+      </div>
+    </div>
+  </article>
+</section>
+<ng-template #loading>
+  <h1>Loading</h1>
+</ng-template>

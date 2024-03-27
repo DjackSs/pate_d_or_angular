@@ -9,7 +9,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root',
 })
 export class LoginService {
-  private endpoint: string = 'http://localhost:8080';
+  private _endpoint: string = 'http://localhost:8080';
   private _currentUser?: User;
   private _isAuthenticated$ = new Subject<boolean>();
 
@@ -32,7 +32,7 @@ export class LoginService {
 
   public logIn(email: string, password: string): Observable<User | null> {
     return this._httpClient
-      .post<User>(`${this.endpoint}/login`, {
+      .post<User>(`${this._endpoint}/login`, {
         email,
         password,
       })
