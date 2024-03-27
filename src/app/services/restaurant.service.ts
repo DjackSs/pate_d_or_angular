@@ -11,9 +11,6 @@ export class RestaurantService
 {
   public readonly restaurantKey:string = "restaurant";
 
-  public restaurants?:Restaurant[];
-
-  public restaurant?:Restaurant;
 
   constructor(private httpClient: HttpClient, private storageService: StorageService){}
   
@@ -29,6 +26,16 @@ export class RestaurantService
   {
     this.storageService.set(this.restaurantKey, JSON.stringify(restaurant));
 
+  }
+
+  public getRestaurant():Restaurant | null
+  {
+    let result = null;
+    const restaurant = this.storageService.get(this.restaurantKey);
+    
+    if(restaurant) result = JSON.parse(restaurant);
+
+    return result;
   }
 
   

@@ -10,10 +10,8 @@ import {
 import { LoginService } from './services/login.service';
 import { inject } from '@angular/core';
 
-const isConnected: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-): MaybeAsync<GuardResult> => {
+const isConnected: CanActivateFn = (route: ActivatedRouteSnapshot,state: RouterStateSnapshot): MaybeAsync<GuardResult> => 
+{
   const loginService: LoginService = inject(LoginService);
   const router: Router = inject(Router);
 
@@ -43,6 +41,14 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./components/restaurant-list/restaurant-list.component').then(
         (f) => f.RestaurantListComponent
+      ),
+  },
+  {
+    path: 'tables',
+    canActivate: [isConnected],
+    loadComponent: () =>
+      import('./components/table-list/table-list.component').then(
+        (f) => f.TableListComponent
       ),
   },
 ];
