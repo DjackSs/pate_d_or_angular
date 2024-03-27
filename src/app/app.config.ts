@@ -7,6 +7,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { tokenInterceptor } from './interceptor/token';
 import player from 'lottie-web';
 import { provideLottieOptions } from 'ngx-lottie';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -15,6 +16,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withInterceptors([tokenInterceptor])),
     provideLottieOptions({
       player: () => player,
-    }),
+    }), provideAnimationsAsync(),
   ],
 };

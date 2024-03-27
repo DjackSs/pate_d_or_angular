@@ -1,20 +1,28 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-      <a class="navbar-brand" routerLink="/">Brew App</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-          <ul class="navbar-nav">
-
-              <li *ngFor="let menuRoute of menuRoutes" class="nav-item">
-                  <a class="nav-link" [routerLink]="menuRoute.path">{{ menuRoute.libelle }}</a>
-              </li>
-
-          </ul>
-
-          <button (click)="logout()" type="button" class="btn"><i class="fa-solid fa-power-off me-1"></i>Deconnexion</button>
-      </div>
-  </div>
-</nav>
+<div class="container-bottom-nav">
+  <!-- Reservation -->
+  <i class="bi bi-chat-left-text-fill"></i>
+  <i class="bi bi-clock-history"></i>
+  <i class="bi bi-bell-fill"></i>
+  <i class="bi bi-bookmarks-fill"></i>
+  <i class="bi bi-envelope-at-fill"></i>
+  <!-- Home (restaurants) -->
+  <i class="bi bi-app"></i>
+  <i class="bi bi-border-all"></i>
+  <i class="bi bi-command"></i>
+  <!-- Orders -->
+  <i class="bi bi-clipboard-check"></i>
+  <!-- Bill -->
+  <i class="bi bi-bag-fill"></i>
+  <i class="bi bi-currency-dollar"></i>
+  <i class="bi bi-basket3-fill"></i>
+  <i class="bi bi-calculator"></i>
+  <i class="bi bi-calendar2-week-fill"></i>
+  <i class="bi bi-cart"></i>
+  <i class="bi bi-cash-coin"></i>
+  <i class="bi bi-coin"></i>
+  <i class="bi bi-credit-card-fill"></i>
+  <i class="bi bi-flower1"></i>
+  <i class="bi bi-grid"></i>
+  <i class="bi bi-grid-fill"></i>
+  <i class="bi bi-journals"></i>
+</div>
