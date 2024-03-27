@@ -1,5 +1,6 @@
+<app-logout></app-logout>
 <section
-  *ngIf="restaurants$ | async as restaurants; else loading"
+  *ngIf="restaurants$ | async as restaurants else loading"
   class="container text-light d-flex flex-column justify-content-center align-items-center gap-4 position-absolute top-50 start-50 translate-middle"
 >
   <h1 class="h1">Restaurants</h1>
@@ -16,5 +17,5 @@
 </section>
 
 <ng-template #loading>
-  <h1>Loading</h1>
+  <app-loader></app-loader>
 </ng-template>

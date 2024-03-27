@@ -3,7 +3,9 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class StorageService {
+export class StorageService 
+{
+
   constructor() {}
 
   public get(name: string): string | null {
@@ -19,8 +21,5 @@ export class StorageService {
     localStorage.removeItem(name);
   }
 
-  public getToken():string | null
-  {
-    return localStorage.getItem("token");
-  }
+
 }

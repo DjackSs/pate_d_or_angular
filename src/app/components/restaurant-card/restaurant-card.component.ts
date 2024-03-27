@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Restaurant } from '../../entities/Restaurant';
+import { RestaurantService } from '../../services/restaurant.service';
 import { ReservationService } from '../../services/reservation.service';
 import { Router } from '@angular/router';
 
@@ -15,11 +16,14 @@ export class RestaurantCardComponent {
   @Input()
   public restaurant!: Restaurant;
 
-  constructor(private _router: Router) {}
+  constructor(
+    private restaurantService: RestaurantService,
+    private _router: Router
+  ) {}
 
-  public enterRestaurant(restaurant: Restaurant) {
-    //enregistre le retaurant dans le local storage
-    console.log(this.restaurant);
+  public enterRestaurant(restaurant: Restaurant): void {
+    this.restaurantService.saveRestaurant(restaurant);
+    this._router.navigateByUrl('tables');
 
     this._router.navigateByUrl(`reservations/restaurant/${restaurant.id}`);
   }
