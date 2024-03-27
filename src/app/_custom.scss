@@ -1,7 +1,7 @@
 /************** VARIABLES **************/
 :root {
   --bs-font-family-base: "Mont-serrat", sans-serif;
-  --bs-font-family-fairplay: "Playfair Display", sans-serif;
+  --bs-font-family-playfair: "Playfair Display", sans-serif;
   --bs-color-dark: #383c40;
   --bs-color-ochre: #d08209cc;
   --bs-color-peachfuzz: #ffdab9;
@@ -15,8 +15,8 @@
   max-width: 250px;
 }
 
-.fairplay-font {
-  font-family: var(--bs-font-family-fairplay);
+.playfair-font {
+  font-family: var(--bs-font-family-playfair);
 }
 
 .color-custom-dark {
@@ -37,6 +37,10 @@
 }
 .bg-custom-peachfuzz {
   background-color: var(--bs-color-peachfuzz);
+}
+
+.border-custom-peachfuzz {
+  border: 1px solid var(--bs-color-peachfuzz);
 }
 
 /************** CUSTOM GENERIC TO OVERRIDE BOOTSTRAP **************/

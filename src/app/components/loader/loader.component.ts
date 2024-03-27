@@ -19,11 +19,10 @@ export class LoaderComponent implements OnInit {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-
-
-    setTimeout(() => 
-    {
-      this.router.url == "/" ? this.router.navigateByUrl("/login") : this.router.navigateByUrl(this.router.url);
+    setTimeout(() => {
+      this.router.url == '/'
+        ? this.router.navigateByUrl('/login')
+        : this.router.navigateByUrl(this.router.url);
     }, 2000);
   }
 }
