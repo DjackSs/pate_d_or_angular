@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Reservation, Reservations } from '../../entities/reservation';
 import { ReservationService } from '../../services/reservation.service';
 
@@ -12,8 +12,10 @@ import { ReservationService } from '../../services/reservation.service';
   templateUrl: './reservations.component.html',
   styleUrl: './reservations.component.scss',
 })
-export class ReservationsComponent {
-  public reservations$!: Observable<Reservations>;
+export class ReservationsComponent implements OnInit, OnDestroy {
+  private _unsubscribe$ = new Subject<void>();
+
+  public reservations$?: Observable<Reservations>;
 
   constructor(
     private _reservationService: ReservationService,
@@ -23,20 +25,25 @@ export class ReservationsComponent {
   ngOnInit(): void {
     const restaurantId: string | null = this._route.snapshot.paramMap.get('id');
 
-    this.reservations$ = this._reservationService
-      .getAllByRestaurantId(restaurantId)
-      .pipe(
-        map((reservation) =>
-          reservation.sort((a, b) =>
-            a.reservationTime.localeCompare(b.reservationTime)
-          )
-        )
-      );
+    this.reservations$ = this._reservationService.reservations$;
+
+    this._reservationService.getAllByRestaurantId(restaurantId);
   }
 
-  public granReservation(reservation: Reservation): void {
-    console.log(reservation);
-    this._reservationService.granReservation(reservation);
+  public yesToReservation(reservation: Reservation): void {
+    this._reservationService.updateReservationState(reservation, true);
   }
-  public denyReservation(reservation: Reservation) {}
+
+  public noToReservation(reservation: Reservation): void {
+    this._reservationService.updateReservationState(reservation, false);
+  }
+
+  public handleReservationTable(): void {
+    // Handle redirection to the table reserved
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe$.next();
+    this._unsubscribe$.unsubscribe();
+  }
 }
