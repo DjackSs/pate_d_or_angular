@@ -10,6 +10,7 @@ import {
 import { LoginService } from './services/login.service';
 import { inject } from '@angular/core';
 
+
 const isConnected: CanActivateFn = (route: ActivatedRouteSnapshot,state: RouterStateSnapshot): MaybeAsync<GuardResult> => 
 {
   const loginService: LoginService = inject(LoginService);
@@ -51,4 +52,12 @@ export const routes: Routes = [
         (f) => f.TableListComponent
       ),
   },
+  {
+    path: 'order',
+    canActivate: [isConnected],
+    loadComponent: () =>
+      import('./components/order/order.component').then(
+        (f) => f.OrderComponent
+      ),
+  }
 ];
