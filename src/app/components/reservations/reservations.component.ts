@@ -23,6 +23,7 @@ export class ReservationsComponent implements OnInit, OnDestroy {
   public currentRestaurant?: Restaurant | null;
   public isStateToManage?: boolean = false;
   public isGranToManage?: boolean = false;
+  public selectedState: string = '';
 
   constructor(
     private _reservationService: ReservationService,
@@ -41,14 +42,37 @@ export class ReservationsComponent implements OnInit, OnDestroy {
     this._reservationService.getAllByRestaurantId(restaurantId);
 
     this.currentRestaurant = this._restaurantService.getRestaurant();
+
+    console.log(this.reservations$.subscribe((res) => console.log(res)));
   }
 
-  public displayReservationsStateToManage(): void {
+  public areReservationsEmptyOrNotSelectedState(
+    reservations: Reservations,
+    state: string
+  ): boolean {
+    if (!reservations || reservations.length === 0) {
+      return true;
+    }
+
+    if (state === 'hold') {
+      return !reservations.some((reservation) => reservation.state === 'hold');
+    }
+
+    if (state === 'gran') {
+      return !reservations.some((reservation) => reservation.state === 'gran');
+    }
+
+    return false;
+  }
+
+  public displayReservationsStateToManage(state: string): void {
+    this.selectedState = state;
     this.isStateToManage = !this.isStateToManage;
     this.isGranToManage = false;
   }
 
-  public displayReservationsToManage(): void {
+  public displayReservationsToManage(state: string): void {
+    this.selectedState = state;
     this.isGranToManage = !this.isGranToManage;
     this.isStateToManage = false;
   }
