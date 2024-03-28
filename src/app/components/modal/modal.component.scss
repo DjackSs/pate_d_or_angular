@@ -1,0 +1,42 @@
+.main-container {
+  min-height: 30vh;
+  width: 100%;
+}
+
+.header {
+  padding: 10px;
+}
+
+section, div {
+  background-color: #ffdab9;
+  color: #383c40;
+  text-align: center;
+
+}
+
+
+.container {
+  padding: 0 45px 0 45px;
+}
+
+.body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dish-name {
+  text-align: left;
+}
+
+.dish-price {
+  text-align: right;
+}
+
+.btn-custom-dark {
+  margin: 20px auto;
+  color: #ffdab9;
+  position: absolute;
+  bottom: 0;
+  right: 100px;
+}

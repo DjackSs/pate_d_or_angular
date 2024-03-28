@@ -10,12 +10,13 @@ import { OrderComponent } from '../order/order.component';
 import { Router } from '@angular/router';
 
 import { NavbarService } from '../../services/navbar.service';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 
 @Component({
   selector: 'app-table-list',
   standalone: true,
-  imports: [CommonModule, LoaderComponent, OrderComponent],
+  imports: [CommonModule, LoaderComponent, NavbarComponent, OrderComponent],
   templateUrl: './table-list.component.html',
   styleUrl: './table-list.component.scss',
 })
@@ -33,13 +34,15 @@ export class TableListComponent {
 
 
   ngOnInit() {
-    this.navbarService.setShowNavbar(true);
     this.restaurant = this.restaurantService.getRestaurant();
-
+    
     if (this.restaurant)
-      this.tables$ = this.tableService.getTablesByIdRestaurant(
-        this.restaurant.id
+    this.tables$ = this.tableService.getTablesByIdRestaurant(
+      this.restaurant.id
+      
       );
+    this.navbarService.setShowNavbar(true);
+
   }
 
 
@@ -52,5 +55,9 @@ export class TableListComponent {
 
 
 
+
+
+      
+    
 
 }

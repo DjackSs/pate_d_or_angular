@@ -1,0 +1,17 @@
+<section *ngIf="bills && bills.length > 0" class="main-container">
+  <div class="header">
+    <h5>Récapitulatif de la commande</h5>
+  </div>
+  <div class="container">
+    <div class="body" *ngFor="let bill of bills">
+      <div class="dish-name">{{ bill.dishName }}</div>
+      <div class="dish-price">{{ bill.dishPrice | currency : "EUR" }}</div>
+    </div>
+    <div class="container-value">
+      <div class="subtotal">Montant HT: {{ calculateSubtotal() | currency: 'EUR' }}</div>
+      <div class="tva">TVA (20%): {{ calculateTVA() | currency: 'EUR' }}</div>
+      <div class="total">Montant TTC: {{ calculateTotalAmount() | currency: 'EUR' }}</div>
+    </div>
+  </div>
+  <button class="btn btn-custom-dark">Imprimer addition</button>
+</section>
