@@ -52,10 +52,27 @@ export class OrderService
       table: table
     }
 
-    const url ="http://localhost:8080/pate_d_or/commandes";
+    const url:string ="http://localhost:8080/pate_d_or/commandes";
 
     return this.httpClient.post<Order>(url, body);
     
+  }
+
+  //------------------------------------------
+  //put
+
+  public updateOrderStatus(orderId:number, newState:string):void
+  {
+
+    const body =
+    {
+      state: newState
+    }
+
+    const url:string ="http://localhost:8080/pate_d_or/commandes/"+Number(orderId)+"/modifier-etat";
+
+    this.httpClient.put<Order>(url, body).subscribe();
+
   }
 
 
