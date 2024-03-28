@@ -1,0 +1,11 @@
+<section *ngIf="bills && bills.length > 0" class="main-container">
+  <div class="header">
+    <h5>Récapitulatif de la commande</h5>
+  </div>
+  <div class="body" *ngFor="let bill of bills">
+    {{ bill.dishName}} - {{ bill.dishPrice | currency: '€' }}
+  </div>
+  <button class="btn btn-custom-dark" (click)="onPrintClicked()">Imprimer addition</button>
+
+  <app-alert-custom *ngIf="ifPrinted"></app-alert-custom>
+</section>

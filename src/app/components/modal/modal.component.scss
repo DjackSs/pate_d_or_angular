@@ -1,0 +1,24 @@
+.main-container {
+  min-height: 25vh;
+  width: 100%;
+}
+
+.header {
+  padding: 10px;
+}
+
+section, div {
+  background-color: #ffdab9;
+  color: #383c40;
+  text-align: center;
+
+}
+
+.btn-custom-dark {
+  margin: 20px auto;
+  color: #ffdab9;
+  position: absolute;
+  bottom: 0;
+  right: 100px;
+
+}

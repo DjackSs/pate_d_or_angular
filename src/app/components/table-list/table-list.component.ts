@@ -6,11 +6,12 @@ import { TableService } from '../../services/table.service';
 import { Observable } from 'rxjs';
 import { LoaderComponent } from '../loader/loader.component';
 import { NavbarService } from '../../services/navbar.service';
+import { NavbarComponent } from '../navbar/navbar.component';
 
 @Component({
   selector: 'app-table-list',
   standalone: true,
-  imports: [CommonModule, LoaderComponent],
+  imports: [CommonModule, LoaderComponent, NavbarComponent],
   templateUrl: './table-list.component.html',
   styleUrl: './table-list.component.scss',
 })
@@ -25,12 +26,12 @@ export class TableListComponent {
   ) {}
 
   ngOnInit() {
-    this.navbarService.setShowNavbar(true);
     this.restaurant = this.restaurantService.getRestaurant();
-
+    
     if (this.restaurant)
-      this.tables$ = this.tableService.getTablesByIdRestaurant(
-        this.restaurant.id
+    this.tables$ = this.tableService.getTablesByIdRestaurant(
+      this.restaurant.id
       );
-  }
+      this.navbarService.setShowNavbar(true);
+    }
 }
