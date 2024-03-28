@@ -22,6 +22,8 @@ export class OrderComponent
 
   public tableSelectOptions!:string[];
   public orderSelectOptions!:string[];
+
+  //=========================================================
   
   constructor(private orderService: OrderService, private tableService: TableService, private route: ActivatedRoute){}
 
@@ -42,6 +44,8 @@ export class OrderComponent
 
   }
 
+  //=========================================================
+
   public updateTable(table:Table, tableSelectValue:string)
   {
 
@@ -49,24 +53,28 @@ export class OrderComponent
     if(tableSelectValue === this.tableSelectOptions[0])
     {
       this.tableService.freeTable(table);
-
-      console.log(table);
     }
 
     //table en status "pres"
     if(tableSelectValue === this.tableSelectOptions[1])
     {
       this.tableService.updateTablePresent(table);
-
-      console.log(table);
     }
     
   }
 
+  //-----------------------------------------------------------
+
+  public creatOrder(OrderTable:OrderTable)
+  {
+    this.order$ = this.orderService.createOrder(OrderTable);
+
+  }
+
+  //-----------------------------------------------------------
+
   public updateOrder(table:Table, orderSelectValue:string)
   {
-    console.log(orderSelectValue);
-    // this.order$ = this.orderService.createOrder(table)
 
     switch(orderSelectValue)
     {
@@ -77,10 +85,22 @@ export class OrderComponent
           });
         break;
       case this.orderSelectOptions[1]:
+        this.order$?.subscribe(result => 
+          {
+            this.orderService.updateOrderStatus(result.id, "read")
+          });
         break;
       case this.orderSelectOptions[2]:
+        this.order$?.subscribe(result => 
+          {
+             this.orderService.updateOrderStatus(result.id, "serv")
+          });
         break;
       case this.orderSelectOptions[3]:
+        this.order$?.subscribe(result => 
+          {
+             this.orderService.updateOrderStatus(result.id, "sold")
+          });
         break;
       default:
         break;
@@ -88,11 +108,9 @@ export class OrderComponent
 
   }
 
-  public creatOrder(OrderTable:OrderTable)
-  {
-    this.order$ = this.orderService.createOrder(OrderTable);
+  //-----------------------------------------------------------
 
-  }
+ 
 
 
 
