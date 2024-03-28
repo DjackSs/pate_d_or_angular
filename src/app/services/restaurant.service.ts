@@ -11,7 +11,6 @@ export class RestaurantService
 {
   public readonly restaurantKey:string = "restaurant";
 
-
   constructor(private httpClient: HttpClient, private storageService: StorageService){}
   
   public getRestaurants():Observable<Restaurants>

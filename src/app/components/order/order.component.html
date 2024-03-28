@@ -1,0 +1,21 @@
+<article *ngIf="table$ | async as table else loading">
+
+  <div>
+    <app-select [libelle]="'Table'" [options]="tableSelectOptions" (choiceValue)="updateTable(table, $event)"></app-select>
+    <app-select *ngIf="table.state" [libelle]="'Commande'" [options]="orderSelectOptions" (choiceValue)="updateOrder(table, $event)"></app-select>
+  </div>
+
+  <div *ngIf="order$ |async as order else loading">
+
+    
+
+
+  </div>
+
+
+ 
+</article>
+
+<ng-template #loading>
+  <app-loader></app-loader>
+</ng-template>

@@ -25,7 +25,7 @@ export class RestaurantCardComponent implements OnInit {
 
   public enterRestaurant(restaurant: Restaurant): void {
     this.restaurantService.saveRestaurant(restaurant);
-    this._router.navigateByUrl('tables');
+    //this._router.navigateByUrl('tables');
 
     this._router.navigateByUrl(`reservations/restaurant/${restaurant.id}`);
   }

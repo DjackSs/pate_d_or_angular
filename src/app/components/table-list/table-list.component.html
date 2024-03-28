@@ -9,11 +9,17 @@
   <div class="container">
     <div class="custom-container-600 mx-auto row">
       <div class="col col-md-6" *ngFor="let table of tables">
-        <div>
+
+        <div (click)="toOrder(table)">
+
             <h2>N° de table :{{table.id}}</h2>
             <p>Places :{{table.numberPlace}}</p>
+            <p>satus {{table.state}}</p>
+
         </div>
+
       </div>
+
     </div>
   </div>
 </section>
