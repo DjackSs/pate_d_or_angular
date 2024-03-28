@@ -8,11 +8,10 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 @Injectable({
   providedIn: 'root',
 })
-export class LoginService 
-{
+export class LoginService {
   private readonly endpoint: string = 'http://localhost:8080';
-  private readonly userKey:string = "user";
-  private readonly tokenKey:string = "token";
+  private readonly userKey: string = 'user';
+  private readonly tokenKey: string = 'token';
 
   private _currentUser?: User;
   private _isAuthenticated$ = new Subject<boolean>();
@@ -20,11 +19,18 @@ export class LoginService
   public isAuthenticated$: Observable<boolean> =
     this._isAuthenticated$.asObservable();
 
+  private isLoggedInFlag: boolean = false; // Définissez cette variable en fonction de votre logique d'authentification
+
   constructor(
     private _router: Router,
     private _storageService: StorageService,
     private _httpClient: HttpClient
   ) {}
+
+  // Méthode pour vérifier si l'utilisateur est connecté
+  isLoggedIn(): boolean {
+    return this.isLoggedInFlag; // Retourne simplement la valeur de isLoggedInFlag
+  }
 
   private notifyAuthenticationState(logInSuccess: boolean): void {
     this._isAuthenticated$.next(logInSuccess);
@@ -65,11 +71,8 @@ export class LoginService
   //----------------------------------
   //logout
 
-  public logout():void
-  {
+  public logout(): void {
     this._storageService.delete(this.userKey);
     this._storageService.delete(this.tokenKey);
   }
-
-
 }

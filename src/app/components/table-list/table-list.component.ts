@@ -5,30 +5,42 @@ import { RestaurantService } from '../../services/restaurant.service';
 import { TableService } from '../../services/table.service';
 import { Observable } from 'rxjs';
 import { LoaderComponent } from '../loader/loader.component';
+
 import { OrderComponent } from '../order/order.component';
 import { Router } from '@angular/router';
+
+import { NavbarService } from '../../services/navbar.service';
+
 
 @Component({
   selector: 'app-table-list',
   standalone: true,
   imports: [CommonModule, LoaderComponent, OrderComponent],
   templateUrl: './table-list.component.html',
-  styleUrl: './table-list.component.scss'
+  styleUrl: './table-list.component.scss',
 })
-export class TableListComponent 
-{
-  public tables$!:Observable<Table[]>;
-  public restaurant!:Restaurant | null;
+export class TableListComponent {
+  public tables$!: Observable<Table[]>;
+  public restaurant!: Restaurant | null;
 
-  constructor(private restaurantService: RestaurantService, private tableService: TableService, private router: Router){}
 
-  ngOnInit()
-  {
-      this.restaurant = this.restaurantService.getRestaurant();
+  constructor(
+    private restaurantService: RestaurantService,
+    private tableService: TableService,
+    private navbarService: NavbarService
+  ) {}
 
-      if(this.restaurant) this.tables$ = this.tableService.getTablesByIdRestaurant(this.restaurant.id);
 
+  ngOnInit() {
+    this.navbarService.setShowNavbar(true);
+    this.restaurant = this.restaurantService.getRestaurant();
+
+    if (this.restaurant)
+      this.tables$ = this.tableService.getTablesByIdRestaurant(
+        this.restaurant.id
+      );
   }
+
 
   public toOrder(table:Table)
   {
@@ -37,6 +49,7 @@ export class TableListComponent
     this.router.navigateByUrl("order");
 
   }
+
 
 
 

@@ -1,0 +1,19 @@
+<app-logout></app-logout>
+
+<section *ngIf="bills$ | async as bills" class="main-container">
+  <h1 class="h1">Commandes soldées</h1>
+
+  <div class="container">
+    <div
+      class="custom-container"
+      *ngFor="let table of getDistinctTables(bills)"
+    >
+      <div class="custom-container-col">
+        <div class="custom-container-row">
+          <h6>Table n°{{ table }} </h6>
+          <button class="btn-bills">Générer l'addition</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

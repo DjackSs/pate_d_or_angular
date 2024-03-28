@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AnimationOptions, LottieComponent } from 'ngx-lottie';
+import { NavbarService } from '../../services/navbar.service';
 
 @Component({
   selector: 'app-loader',
@@ -16,15 +17,18 @@ export class LoaderComponent implements OnInit {
     loop: true,
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private navbarService: NavbarService) {}
 
   ngOnInit(): void {
 
+    this.navbarService.setShowNavbar(false);
     const delay:number = 3000;
-    setTimeout(() => 
-    {
-      
-      this.router.url == "/" ? this.router.navigateByUrl("/login") : this.router.navigateByUrl(this.router.url);
+
+    setTimeout(() => {
+      this.router.url == '/'
+        ? this.router.navigateByUrl('/login')
+        : this.router.navigateByUrl(this.router.url);
     }, delay);
+
   }
 }

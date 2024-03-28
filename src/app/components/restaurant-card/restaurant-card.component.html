@@ -2,10 +2,7 @@
   *ngIf="restaurant"
   (click)="enterRestaurant(restaurant)"
   class="custom-container-250 mx-auto my-2 d-flex flex-column gap-2 align-items-center p-2 btn shadow-lg"
-  [class]="
-    restaurant.id % 2 === 0 ? 'btn-custom-peachfuzz' : 'btn-custom-ochre'
-  "
->
-  <h2 class="fairplayt-font h2 text-center">{{ restaurant.name }}</h2>
+  [class]="'btn-custom-peachfuzz'">
+  <h2 class="playfair-font h2 text-center">{{ restaurant.name }}</h2>
   <p class="h6 fw-light fst-italic">{{ restaurant.address }}</p>
 </article>
