@@ -23,7 +23,6 @@ export class ReservationService {
 
   public readonly reservations$: Observable<Reservations> =
     this._reservations$.asObservable();
-
   public reservation?: Reservation;
 
   constructor(private _httpClient: HttpClient) {}
