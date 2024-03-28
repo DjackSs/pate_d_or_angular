@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { OrderService } from '../../services/order.service';
-import { Orders, Order, OrderTable } from '../../entities/order'; import { Table } from '../../entities/Restaurant';
+import { Orders, Order } from '../../entities/order'; 
+import { Table } from '../../entities/Table';
 import { LoaderComponent } from '../loader/loader.component';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -46,7 +47,9 @@ export class OrderComponent
   public updateTable(table:Table, tableSelectValue:string)
   {
 
-    //libère en status null
+    console.log(table);
+
+    //table en status null
     if(tableSelectValue === this.tableSelectOptions[0])
     {
       this.tableService.freeTable(table);
@@ -62,10 +65,9 @@ export class OrderComponent
 
   //-----------------------------------------------------------
 
-  public creatOrder(OrderTable:OrderTable)
+  public creatOrder(OrderTable:Table)
   {
     this.order$ = this.orderService.createOrder(OrderTable);
-
   }
 
   //-----------------------------------------------------------

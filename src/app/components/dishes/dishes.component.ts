@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Order } from '../../entities/order';
+import { Card } from '../../entities/Table';
 
 @Component({
   selector: 'app-dishes',
@@ -13,6 +14,9 @@ export class DishesComponent
 {
   @Input()
   public order!: Order;
+
+  @Input()
+  public card!:Card;
 
   public dishesCategories!:any[];
 
@@ -40,6 +44,7 @@ export class DishesComponent
 
        }
     ];
+
   }
 
 
