@@ -7,11 +7,12 @@ import { Observable } from 'rxjs';
 import { TableService } from '../../services/table.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SelectComponent } from '../select/select.component';
+import { DishesComponent } from '../dishes/dishes.component';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [CommonModule, LoaderComponent, SelectComponent],
+  imports: [CommonModule, LoaderComponent, SelectComponent, DishesComponent],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss'
 })
@@ -32,13 +33,9 @@ export class OrderComponent
 
     //récupérer une commande déja existante => limiter les commandes à 1 par table
     this.order$ = this.orderService.getOrderByTableId(tableId);
-    this.order$.subscribe(result => console.log(result));
-
 
     this.tableSelectOptions = ["Libre", "Occupé"];
-
     this.orderSelectOptions = ["Nouvelle","Prise","Servie","Payée"];
-
 
   }
 
@@ -50,15 +47,12 @@ export class OrderComponent
     {
       this.tableService.freeTable(table);
 
-      console.log(table);
     }
 
     //table en status "pres"
     if(tableSelectValue === this.tableSelectOptions[1])
     {
       this.tableService.updateTablePresent(table);
-
-      console.log(table);
     }
     
   }
