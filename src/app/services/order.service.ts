@@ -75,6 +75,15 @@ export class OrderService
 
   }
 
+  public updateOrderDishes(order:Order):void
+  {
+
+    const url:string ="http://localhost:8080/pate_d_or/commandes/"+Number(order.id)+"/ajouter-plats";
+
+    this.httpClient.put<Order>(url, order).subscribe();
+
+  }
+
 
 
 }
