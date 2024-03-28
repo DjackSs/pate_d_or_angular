@@ -29,21 +29,15 @@ export class ReservationService {
   constructor(private _httpClient: HttpClient) {}
 
   public getAllByRestaurantId(restaurantId: string | null): void {
-    this._httpClient
-      .get<Reservations>(`${this._endpoint}/restaurant/${restaurantId}`)
-      .subscribe((reservations) => {
+    this._httpClient.get<Reservations>(`${this._endpoint}/restaurant/${restaurantId}`).subscribe((reservations) => 
+      {
         this._reservations$.next(reservations);
       });
   }
 
-  public updateReservationState(
-    reservation: Reservation,
-    isGranted: boolean
-  ): void {
-    this._httpClient
-      .put<Reservation>(
-        `${this._endpoint}/${reservation.id}`,
-        isGranted ? this._granReservationState : this._denyReservationState,
+  public updateReservationState(reservation: Reservation,isGranted: boolean): void 
+  {
+    this._httpClient.put<Reservation>( `${this._endpoint}/${reservation.id}`, isGranted ? this._granReservationState : this._denyReservationState,
         this._httpHeadersOptions
       )
       .pipe(

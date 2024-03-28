@@ -61,7 +61,7 @@ export const routes: Routes = [
       ),
   },
   {
-    path: 'order',
+    path: 'order/table/:id',
     canActivate: [isConnected],
     loadComponent: () =>
       import('./components/order/order.component').then(

@@ -22,5 +22,5 @@ export interface Table
 {
   id: number
   numberPlace: number
-  state?: string
+  state?: string | null
 }

@@ -27,7 +27,8 @@ export class TableListComponent {
   constructor(
     private restaurantService: RestaurantService,
     private tableService: TableService,
-    private navbarService: NavbarService
+    private navbarService: NavbarService,
+    private _router: Router
   ) {}
 
 
@@ -45,8 +46,7 @@ export class TableListComponent {
   public toOrder(table:Table)
   {
 
-    this.tableService.saveTable(table);
-    this.router.navigateByUrl("order");
+    this._router.navigateByUrl(`order/table/${table.id}`);
 
   }
 

@@ -14,34 +14,58 @@ export class TableService
 
   constructor(private httpClient: HttpClient, private storageService: StorageService){}
 
+  //------------------------------------------
+  //get
+
   public getTablesByIdRestaurant(restaurantId:number):Observable<Table[]>
   {
     return this.httpClient.get<Table[]>("http://localhost:8080/pate_d_or/table/resto/"+restaurantId); 
   }
 
-  public getTablesById(restaurantId:number):Observable<Table>
+  public getTableById(Id:number):Observable<Table>
   {
-    return this.httpClient.get<Table>("http://localhost:8080/pate_d_or/table/"+restaurantId); 
+    return this.httpClient.get<Table>("http://localhost:8080/pate_d_or/table/"+Id); 
   }
 
   //------------------------------------------
-  //storage
+  //put
 
-  public saveTable(table:Table):void
+  public updateTablePresent(table:Table):void
   {
-    this.storageService.set(this.tableKey, JSON.stringify(table));
+    if(table.state != "pres")
+    {
+      table.state = "pres";
 
-  }
+      const body = 
+      {
+        state: "pres"
 
-  public getTable():Table | null
-  {
-    let result = null;
-    const table = this.storageService.get(this.tableKey);
+      }
+      const url:string = "http://localhost:8080/pate_d_or/table/"+String(table.id);
+
+      this.httpClient.put<Table>(url, body).subscribe();
+    }
     
-    if(table) result = JSON.parse(table);
-
-    return result;
   }
+
+  public freeTable(table:Table):void
+  {
+    if(table.state != null)
+    {
+      table.state = null;
+
+      const body = 
+      {
+        state: table.state
+      }
+      const url:string = "http://localhost:8080/pate_d_or/table/"+String(table.id);
+
+      this.httpClient.put<Table>(url, body).subscribe();
+    }
+
+  }
+
+
 
 
 }

@@ -1,35 +1,85 @@
 import { Component, Input } from '@angular/core';
 import { OrderService } from '../../services/order.service';
-import { Orders } from '../../entities/order';
-import { Table } from '../../entities/Restaurant';
+import { Orders, Order, OrderTable } from '../../entities/order'; import { Table } from '../../entities/Restaurant';
 import { LoaderComponent } from '../loader/loader.component';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { TableService } from '../../services/table.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SelectComponent } from '../select/select.component';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [CommonModule, LoaderComponent],
+  imports: [CommonModule, LoaderComponent, SelectComponent],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss'
 })
 export class OrderComponent 
 {
-  public orders$!:Observable<Orders>;
-  public table!:Table |null;
+  public table$!:Observable<Table>;
+  public order$?: Observable<object>;
 
-
+  public tableSelectOptions!:string[];
+  public orderSelectOptions!:string[];
+  
   constructor(private orderService: OrderService, private tableService: TableService, private route: ActivatedRoute){}
 
   ngOnInit()
   {
-    this.table = this.tableService.getTable();
 
-    if(this.table) this.orders$ = this.orderService.getOrderByTableId(this.table.id);
+    this.tableSelectOptions = ["Libre", "Occupé"];
+    this.orderSelectOptions = ["Nouvelle","Prise","Servie","Payée"];
+
+    const tableId:number | null = Number(this.route.snapshot.paramMap.get("id"));
+    this.table$ = this.tableService.getTableById(tableId);
+
+  }
+
+  public updateTable(table:Table, tableSelectValue:string)
+  {
+    console.log(tableSelectValue);
+
+    if(tableSelectValue === this.tableSelectOptions[0])
+    {
+      this.tableService.freeTable(table);
+
+      console.log(table);
+    }
+
+    if(tableSelectValue === this.tableSelectOptions[1])
+    {
+      this.tableService.updateTablePresent(table);
+
+      console.log(table);
+    }
     
-  
+  }
+
+  public updateOrder(table:Table, orderSelectValue:string)
+  {
+    console.log(orderSelectValue);
+
+    switch(orderSelectValue)
+    {
+      case this.orderSelectOptions[0]:
+        break;
+      case this.orderSelectOptions[1]:
+        break;
+      case this.orderSelectOptions[2]:
+        break;
+      case this.orderSelectOptions[3]:
+        break;
+      default:
+        break;
+    }
+
+  }
+
+  public creatOrder(OrderTable:OrderTable)
+  {
+    this.order$ = this.orderService.createOrder(OrderTable);
+
   }
 
 
