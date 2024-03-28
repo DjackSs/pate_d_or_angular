@@ -11,7 +11,7 @@
       <div class="custom-container-col">
         <div class="custom-container-row">
           <h6>Table n°{{ table }} </h6>
-          <button class="btn-bills">Générer l'addition</button>
+          <button class="btn-bills" (click)="generateBill(getBillsForTable(bills, table))">Générer l'addition</button>
         </div>
       </div>
     </div>
