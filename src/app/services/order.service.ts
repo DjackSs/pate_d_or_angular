@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Order, Orders, OrderTable } from '../entities/order';
 import { Observable, map } from 'rxjs';
+import { Table } from '../entities/Restaurant';
 
 @Injectable({
   providedIn: 'root'
@@ -16,30 +17,44 @@ export class OrderService
 
   public getAllorder():Observable<Orders>
   {
-    return this.httpClient.get<Orders>("http://localhost:8080/pate_d_or/commandes");
+    const url:string = "http://localhost:8080/pate_d_or/commandes";
+
+    return this.httpClient.get<Orders>(url);
   }
 
   public getOrderById(id:number):Observable<Order>
   {
-    return this.httpClient.get<Order>("http://localhost:8080/pate_d_or/commandes/"+id);
+    const url:string = "http://localhost:8080/pate_d_or/commandes/"+String(id);
+
+    return this.httpClient.get<Order>(url);
 
   }
 
-  public getOrderByTableId(id:number):Observable<Orders>
+  public getOrderByTableId(id:number):Observable<Order>
   {
-    return this.httpClient.get<Orders>("http://localhost:8080/pate_d_or/commandes/table/"+id);
+    const url:string = "http://localhost:8080/pate_d_or/commandes/table/"+String(id);
+    
+    return this.httpClient.get<Orders>(url).pipe(map((result) =>
+      {
+         return result[0];
+      }));
     
   }
 
   //------------------------------------------
   //post
 
-  public createOrder(table:OrderTable):Observable<Object>
+  public createOrder(table:Table):Observable<Order>
   {
-    const newOrder = new Order();
-    newOrder.table = table;
+    const body =
+    {
+      state: "take",
+      table: table
+    }
 
-    return this.httpClient.post("http://localhost:8080/pate_d_or/commandes", newOrder);
+    const url ="http://localhost:8080/pate_d_or/commandes";
+
+    return this.httpClient.post<Order>(url, body);
     
   }
 

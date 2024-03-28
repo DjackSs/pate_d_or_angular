@@ -18,7 +18,7 @@ import { SelectComponent } from '../select/select.component';
 export class OrderComponent 
 {
   public table$!:Observable<Table>;
-  public order$?: Observable<object>;
+  public order$?: Observable<Order>;
 
   public tableSelectOptions!:string[];
   public orderSelectOptions!:string[];
@@ -27,19 +27,25 @@ export class OrderComponent
 
   ngOnInit()
   {
-
-    this.tableSelectOptions = ["Libre", "Occupé"];
-    this.orderSelectOptions = ["Nouvelle","Prise","Servie","Payée"];
-
     const tableId:number | null = Number(this.route.snapshot.paramMap.get("id"));
     this.table$ = this.tableService.getTableById(tableId);
+
+    //récupérer une commande déja existante => limiter les commandes à 1 par table
+    this.order$ = this.orderService.getOrderByTableId(tableId);
+    this.order$.subscribe(result => console.log(result));
+
+
+    this.tableSelectOptions = ["Libre", "Occupé"];
+
+    this.orderSelectOptions = ["Nouvelle","Prise","Servie","Payée"];
+
 
   }
 
   public updateTable(table:Table, tableSelectValue:string)
   {
-    console.log(tableSelectValue);
 
+    //libère en status null
     if(tableSelectValue === this.tableSelectOptions[0])
     {
       this.tableService.freeTable(table);
@@ -47,6 +53,7 @@ export class OrderComponent
       console.log(table);
     }
 
+    //table en status "pres"
     if(tableSelectValue === this.tableSelectOptions[1])
     {
       this.tableService.updateTablePresent(table);
@@ -59,10 +66,15 @@ export class OrderComponent
   public updateOrder(table:Table, orderSelectValue:string)
   {
     console.log(orderSelectValue);
+    // this.order$ = this.orderService.createOrder(table)
 
     switch(orderSelectValue)
     {
       case this.orderSelectOptions[0]:
+        this.order$?.subscribe(result => 
+          {
+            if(!result) this.order$ = this.orderService.createOrder(table)
+          });
         break;
       case this.orderSelectOptions[1]:
         break;

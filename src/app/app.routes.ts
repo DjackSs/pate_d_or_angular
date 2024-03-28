@@ -11,10 +11,8 @@ import { LoginService } from './services/login.service';
 import { inject } from '@angular/core';
 
 
-const isConnected: CanActivateFn = (
-  route: ActivatedRouteSnapshot,
-  state: RouterStateSnapshot
-): MaybeAsync<GuardResult> => {
+const isConnected: CanActivateFn = (route: ActivatedRouteSnapshot,state: RouterStateSnapshot): MaybeAsync<GuardResult> => 
+{
   const loginService: LoginService = inject(LoginService);
   const router: Router = inject(Router);
 
