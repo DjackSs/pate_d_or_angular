@@ -14,11 +14,12 @@ import { CommonModule } from '@angular/common';
 import { NavbarService } from '../../services/navbar.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
+import { AlertCustomComponent } from '../alert-custom/alert-custom.component';
 
 @Component({
   selector: 'app-bill',
   standalone: true,
-  imports: [LogoutComponent, CommonModule],
+  imports: [LogoutComponent, CommonModule, AlertCustomComponent],
   templateUrl: './bill.component.html',
   styleUrl: './bill.component.scss',
 })
@@ -33,6 +34,12 @@ export class BillComponent implements OnInit {
 
   @Output()
   public confirmClicked = new EventEmitter<void>();
+
+  @Output()
+  public clickToPrint = new EventEmitter<void>();
+
+  public ifPrinted: boolean = false;
+
 
   constructor(
     private billService: BillService,
@@ -75,4 +82,5 @@ export class BillComponent implements OnInit {
     });
     modalComponent.noClicked.subscribe(() => modalRef.close());
   }
+
 }
