@@ -1,0 +1,52 @@
+<article class="container d-flex flex-column gap-4">
+  <p class="h4 text-center fw-light fst-italic" *ngIf="state === 'hold'">
+    Réservations en cours ⏳
+  </p>
+  <p class="h4 text-center fw-light fst-italic" *ngIf="state === 'gran'">
+    Réservations validées ✓
+  </p>
+
+  <div class="custom-height-45vh container overflow-scroll">
+    <div class="row">
+      <div *ngFor="let reservation of reservations" class="col-12">
+        <ng-container *ngIf="reservation.state === state">
+          <p
+            class="border-custom-peachfuzz d-flex align-items-center gap-1 rounded p-2"
+          >
+            <span
+              >{{ reservation.user.name }} {{ reservation.user.lastname }}</span
+            >
+            <span>-</span>
+            <span>{{
+              reservation.reservationTime | date : "dd/MM/yyyy à HH:mm"
+            }}</span>
+            <ng-container *ngIf="state === 'hold'">
+              <span class="d-flex justify-content-center gap-1 ms-auto">
+                <button
+                  class="btn btn-success text-light"
+                  (click)="yesToReservation(reservation)"
+                >
+                  ✔
+                </button>
+                <button
+                  class="btn btn-danger text-light"
+                  (click)="noToReservation(reservation)"
+                >
+                  𝗫
+                </button>
+              </span>
+            </ng-container>
+            <ng-container *ngIf="state === 'gran'">
+              <button
+                class="d-flex gap-1 btn btn-custom-peachfuzz ms-auto"
+                (click)="handleReservationTable()"
+              >
+                Gérer 🪑
+              </button>
+            </ng-container>
+          </p>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</article>

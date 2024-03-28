@@ -2,16 +2,17 @@ import { CommonModule } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { Reservation, Reservations } from '../../entities/reservation';
-import { ReservationService } from '../../services/reservation.service';
-import { NavbarService } from '../../services/navbar.service';
 import { Restaurant } from '../../entities/Restaurant';
+import { Reservations } from '../../entities/reservation';
+import { NavbarService } from '../../services/navbar.service';
+import { ReservationService } from '../../services/reservation.service';
 import { RestaurantService } from '../../services/restaurant.service';
+import { ReservationComponent } from '../reservation/reservation.component';
 
 @Component({
   selector: 'app-reservations',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ReservationComponent],
   templateUrl: './reservations.component.html',
   styleUrl: './reservations.component.scss',
 })
@@ -19,8 +20,9 @@ export class ReservationsComponent implements OnInit, OnDestroy {
   private _unsubscribe$ = new Subject<void>();
 
   public reservations$?: Observable<Reservations>;
-
-  public _currentRestaurant?: Restaurant | null;
+  public currentRestaurant?: Restaurant | null;
+  public isStateToManage?: boolean = false;
+  public isGranToManage?: boolean = false;
 
   constructor(
     private _reservationService: ReservationService,
@@ -38,21 +40,17 @@ export class ReservationsComponent implements OnInit, OnDestroy {
 
     this._reservationService.getAllByRestaurantId(restaurantId);
 
-    this._currentRestaurant = this._restaurantService.getRestaurant();
-
-    console.log(this._currentRestaurant);
+    this.currentRestaurant = this._restaurantService.getRestaurant();
   }
 
-  public yesToReservation(reservation: Reservation): void {
-    this._reservationService.updateReservationState(reservation, true);
+  public displayReservationsStateToManage(): void {
+    this.isStateToManage = !this.isStateToManage;
+    this.isGranToManage = false;
   }
 
-  public noToReservation(reservation: Reservation): void {
-    this._reservationService.updateReservationState(reservation, false);
-  }
-
-  public handleReservationTable(): void {
-    // Handle redirection to the table reserved
+  public displayReservationsToManage(): void {
+    this.isGranToManage = !this.isGranToManage;
+    this.isStateToManage = false;
   }
 
   ngOnDestroy(): void {
