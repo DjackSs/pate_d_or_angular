@@ -23,6 +23,8 @@ import { NavbarComponent } from '../navbar/navbar.component';
 export class TableListComponent {
   public tables$!: Observable<Table[]>;
   public restaurant!: Restaurant | null;
+  public _currentRestaurant?: Restaurant | null;
+  
 
 
   constructor(
@@ -42,7 +44,7 @@ export class TableListComponent {
       
       );
     this.navbarService.setShowNavbar(true);
-
+    this._currentRestaurant = this.restaurantService.getRestaurant();
   }
 
 

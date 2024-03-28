@@ -29,7 +29,7 @@ export class RestaurantListComponent implements OnInit {
   constructor(private restaurantService: RestaurantService, private navbarService: NavbarService) {}
 
   ngOnInit() {
-    this.navbarService.setShowNavbar(true);
     this.restaurants$ = this.restaurantService.getRestaurants();
+    this.navbarService.setShowNavbar(true);
   }
 }

@@ -39,8 +39,6 @@ export class ReservationsComponent implements OnInit, OnDestroy {
     this._reservationService.getAllByRestaurantId(restaurantId);
 
     this._currentRestaurant = this._restaurantService.getRestaurant();
-
-    console.log(this._currentRestaurant);
   }
 
   public yesToReservation(reservation: Reservation): void {
