@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Dish } from '../../entities/Table';
+import { Order } from '../../entities/order';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -14,7 +15,7 @@ export class DishModalComponent
 {
 
   public modalTitle!:string;
-  public modalDishes:Dish[] = [];
+  public modalDishes:any[] = [];
 
   constructor(private activeModale: NgbActiveModal){}
 

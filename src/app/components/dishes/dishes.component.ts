@@ -60,11 +60,29 @@ export class DishesComponent
     //3 - attribus une valeure à un attribut du composant de la modale
     component.modalTitle = dishCategory.libelle;
 
+    
+
     for(let dish of this.card.dishes)
     {
+      let dishAmount:any = {};
+
       if(dish.category === dishCategory.value)
       {
-        component.modalDishes.push(dish);
+        dishAmount.dish = dish;
+
+        let count:number = 0;
+
+        for(let orderDish of this.order.dishes)
+        {
+          if(orderDish.category === dish.category)
+          {
+            count++;
+          }
+        }
+
+        dishAmount.orderAmount = count;
+
+        component.modalDishes.push(dishAmount);
       }
     }
     

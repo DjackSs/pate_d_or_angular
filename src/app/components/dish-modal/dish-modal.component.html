@@ -7,9 +7,11 @@
 <div class="modal-body">
 
     <div *ngFor="let dish of modalDishes">
-        <h2>{{dish.name}}</h2>
-        <p>{{dish.description}}</p>
-        <p>{{dish.price}}</p>
+        <h2>{{dish.dish.name}}</h2>
+        <p>{{dish.dish.description}}</p>
+        <p>{{dish.dish.price}}</p>
+
+        <p>Dans la commande : {{dish.orderAmount}}</p>
     </div>
 
 </div>
