@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, tap } from 'rxjs';
+import { Observable, Subject, map, tap } from 'rxjs';
 import { Reservation, Reservations } from '../entities/reservation';
 
 @Injectable({
@@ -29,6 +29,13 @@ export class ReservationService {
   public getAllByRestaurantId(restaurantId: string | null): void {
     this._httpClient
       .get<Reservations>(`${this._endpoint}/restaurant/${restaurantId}`)
+      .pipe(
+        map((reservation) =>
+          reservation.sort((a, b) =>
+            a.reservationTime.localeCompare(b.reservationTime)
+          )
+        )
+      )
       .subscribe((reservations) => {
         this._reservations$.next(reservations);
       });
