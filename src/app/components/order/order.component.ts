@@ -1,17 +1,19 @@
 import { Component, Input } from '@angular/core';
 import { OrderService } from '../../services/order.service';
-import { Orders, Order, OrderTable } from '../../entities/order'; import { Table } from '../../entities/Restaurant';
+import { Orders, Order } from '../../entities/order'; 
+import { Table } from '../../entities/Table';
 import { LoaderComponent } from '../loader/loader.component';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
 import { TableService } from '../../services/table.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SelectComponent } from '../select/select.component';
+import { DishesComponent } from '../dishes/dishes.component';
 
 @Component({
   selector: 'app-order',
   standalone: true,
-  imports: [CommonModule, LoaderComponent, SelectComponent],
+  imports: [CommonModule, LoaderComponent, SelectComponent, DishesComponent],
   templateUrl: './order.component.html',
   styleUrl: './order.component.scss'
 })
@@ -34,13 +36,9 @@ export class OrderComponent
 
     //récupérer une commande déja existante => limiter les commandes à 1 par table
     this.order$ = this.orderService.getOrderByTableId(tableId);
-    this.order$.subscribe(result => console.log(result));
-
 
     this.tableSelectOptions = ["Libre", "Occupé"];
-
     this.orderSelectOptions = ["Nouvelle","Prise","Servie","Payée"];
-
 
   }
 
@@ -49,7 +47,9 @@ export class OrderComponent
   public updateTable(table:Table, tableSelectValue:string)
   {
 
-    //libère en status null
+    console.log(table);
+
+    //table en status null
     if(tableSelectValue === this.tableSelectOptions[0])
     {
       this.tableService.freeTable(table);
@@ -65,10 +65,9 @@ export class OrderComponent
 
   //-----------------------------------------------------------
 
-  public creatOrder(OrderTable:OrderTable)
+  public creatOrder(OrderTable:Table)
   {
     this.order$ = this.orderService.createOrder(OrderTable);
-
   }
 
   //-----------------------------------------------------------

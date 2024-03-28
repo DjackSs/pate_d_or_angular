@@ -1,0 +1,11 @@
+
+<div>
+
+    <button type="button" class="btn btn-secondary  btn-lg" *ngFor="let category of dishesCategories" (click)="dishModal(category)">{{category.libelle}}</button>
+   
+</div>
+<div>
+
+    <button type="button" class="btn btn-primary btn-lg" (click)="saveDishes()">Enregistrer</button> 
+
+</div>

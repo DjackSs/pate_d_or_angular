@@ -1,0 +1,23 @@
+<div class="modal-header">
+
+    <h2 class="modal-title m-2">{{modalTitle}}</h2>
+    
+</div>
+
+<div class="modal-body">
+
+    <div *ngFor="let dish of modalDishes">
+        <h2>{{dish.dish.name}}</h2>
+        <p>{{dish.dish.description}}</p>
+        <p>{{dish.dish.price}}</p>
+
+        <p>Dans la commande : {{dish.orderAmount}}</p>
+    </div>
+
+</div>
+
+<div class="modal_footer">
+
+    <button class="btn-close" type="button" (click)="closeModal()"></button>
+    
+</div>

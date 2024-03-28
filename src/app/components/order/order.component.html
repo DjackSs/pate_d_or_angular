@@ -2,15 +2,15 @@
 
   <div>
     <app-select [libelle]="'Table'" [options]="tableSelectOptions" (choiceValue)="updateTable(table, $event)"></app-select>
-    <app-select *ngIf="table.state" [libelle]="'Commande'" [options]="orderSelectOptions" (choiceValue)="updateOrder(table, $event)"></app-select>
+    <app-select [libelle]="'Commande'" [options]="orderSelectOptions" (choiceValue)="updateOrder(table, $event)" *ngIf="table.state"></app-select>
   </div>
 
-  <div *ngIf="order$ |async as order else loading">
+  <ng-container *ngIf="order$ |async as order else loading">
 
-    <h1>hello</h1>
+    <app-dishes [order]="order" [card]="table.restaurant.card"></app-dishes>
 
+  </ng-container>
 
-  </div>
 
 
  

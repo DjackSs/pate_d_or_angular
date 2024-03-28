@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Table } from '../entities/Restaurant';
+import { Table } from '../entities/Table';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { StorageService } from './storage.service';
