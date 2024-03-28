@@ -5,6 +5,8 @@ import { Observable, Subject } from 'rxjs';
 import { Reservation, Reservations } from '../../entities/reservation';
 import { ReservationService } from '../../services/reservation.service';
 import { NavbarService } from '../../services/navbar.service';
+import { Restaurant } from '../../entities/Restaurant';
+import { RestaurantService } from '../../services/restaurant.service';
 
 @Component({
   selector: 'app-reservations',
@@ -18,10 +20,13 @@ export class ReservationsComponent implements OnInit, OnDestroy {
 
   public reservations$?: Observable<Reservations>;
 
+  public _currentRestaurant?: Restaurant | null;
+
   constructor(
     private _reservationService: ReservationService,
     private _route: ActivatedRoute,
-    private navbarService: NavbarService
+    private navbarService: NavbarService,
+    private _restaurantService: RestaurantService
   ) {}
 
   ngOnInit(): void {
@@ -32,6 +37,10 @@ export class ReservationsComponent implements OnInit, OnDestroy {
     this.reservations$ = this._reservationService.reservations$;
 
     this._reservationService.getAllByRestaurantId(restaurantId);
+
+    this._currentRestaurant = this._restaurantService.getRestaurant();
+
+    console.log(this._currentRestaurant);
   }
 
   public yesToReservation(reservation: Reservation): void {
