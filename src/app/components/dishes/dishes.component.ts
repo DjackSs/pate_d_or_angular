@@ -71,14 +71,19 @@ export class DishesComponent
         dishAmount.dish = dish;
 
         let count:number = 0;
-
-        for(let orderDish of this.order.dishes)
+        
+        if(this.order.dishes)
         {
-          if(orderDish.name === dish.name)
+          for(let orderDish of this.order.dishes)
           {
-            count++;
+            if(orderDish.name === dish.name)
+            {
+              count++;
+            }
           }
+
         }
+        
 
         dishAmount.orderAmount = count;
 
