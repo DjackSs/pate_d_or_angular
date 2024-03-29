@@ -22,7 +22,12 @@ export class DishModalComponent
 
   constructor(private activeModale: NgbActiveModal){}
 
-  public closeModal():void
+  public closeModal()
+  {
+    this.activeModale.close();
+  }
+
+  public closeSaveModal():void
   {
     this.customDish.emit(this.modalDishes);
 

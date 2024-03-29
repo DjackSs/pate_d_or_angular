@@ -94,15 +94,21 @@ export class DishesComponent
     //récupère l'eventEmiter de la modale
     modalRef.result.then(result =>
       {
-        this.order.dishes = this.order.dishes.filter((item) => item.category != dishCategory.value);
 
-        for(let item of result)
+        if(result)
         {
-          for(let i=0; i<item.orderAmount; i++)
+          this.order.dishes = this.order.dishes.filter((item) => item.category != dishCategory.value);
+
+          for(let item of result)
           {
-            this.order.dishes.push(item.dish);
+            for(let i=0; i<item.orderAmount; i++)
+            {
+              this.order.dishes.push(item.dish);
+            }
           }
+
         }
+       
 
       });
 
