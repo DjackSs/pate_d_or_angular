@@ -1,27 +1,54 @@
-<div class="modal-header">
-
-    <h2 class="modal-title m-2">{{modalTitle}}</h2>
-    <button class="btn-close" type="button" (click)="closeModal()"></button>
-    
-</div>
-
-<div class="modal-body">
-
-    <div *ngFor="let dish of modalDishes">
-        <h2>{{dish.dish.name}}</h2>
-        <p>{{dish.dish.description}}</p>
-        <p>{{dish.dish.price}}</p>
-
-        <p>Dans la commande : {{dish.orderAmount}}</p>
-        <button type="button" class="btn btn-success" (click)="addDish(dish.dish, 1)">+</button>
-        <button type="button" class="btn btn-danger" (click)="addDish(dish.dish, -1)">-</button>
+<div class="modal-dialog m-0">
+  <div class="modal-content bg-custom-peachfuzz border-none rounded-0">
+    <div
+      class="modal-header rounded-0 border-custom-dark border-top-0 border-start-0 border-end-0"
+    >
+      <h2 class="modal-title flex-grow-1 text-center">
+        {{ modalTitle }}
+      </h2>
+      <button
+        class="btn btn-custom-dark btn-outline-none btn-close"
+        type="button"
+        (click)="closeModal()"
+      ></button>
     </div>
 
-</div>
+    <div class="custom-height-45vh modal-body">
+      <div
+        *ngFor="let dish of modalDishes"
+        class="py-1 d-flex flex-column justify-content-center align-items-center text-center border-top-0 border-start-0 border-end-0"
+      >
+        <h2 class="playfair-font">{{ dish.dish.name }}</h2>
+        <p class="fst-italic">{{ dish.dish.description }}</p>
 
-<div class="modal_footer">
+        <div class="d-flex gap-2 mb-2">
+          <button
+            type="button"
+            class="custom-rounded-btn-1rem d-flex justify-content-center align-items-center btn btn-outline-custom-dark btn-md"
+            (click)="addDish(dish.dish, 1)"
+          >
+            +
+          </button>
+          <p>{{ dish.orderAmount }}</p>
+          <button
+            type="button"
+            class="custom-rounded-btn-1rem d-flex justify-content-center align-items-center btn btn-outline-dark btn-md"
+            (click)="addDish(dish.dish, -1)"
+          >
+            -
+          </button>
+        </div>
+      </div>
+    </div>
 
-    <button type="button" class="btn btn-primary btn-lg" (click)="closeSaveModal()">Valider</button> 
-    
-    
+    <div class="modal_footer text-center p-2">
+      <button
+        type="button"
+        class="btn btn-custom-dark btn-lg"
+        (click)="closeSaveModal()"
+      >
+        Valider
+      </button>
+    </div>
+  </div>
 </div>
