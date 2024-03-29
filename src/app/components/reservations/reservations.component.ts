@@ -41,13 +41,9 @@ export class ReservationsComponent implements OnInit, OnDestroy {
 
     this._reservationService.getAllByRestaurantId(restaurantId);
 
-<<<<<<< HEAD
-    this._currentRestaurant = this._restaurantService.getRestaurant();
-=======
     this.currentRestaurant = this._restaurantService.getRestaurant();
 
     console.log(this.reservations$.subscribe((res) => console.log(res)));
->>>>>>> 442e38a7b20d8809a95199be063b9da20e3b2485
   }
 
   public areReservationsEmptyOrNotSelectedState(

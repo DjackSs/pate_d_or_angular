@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Dish } from '../../entities/Table';
 import { Order } from '../../entities/order';
@@ -17,11 +17,30 @@ export class DishModalComponent
   public modalTitle!:string;
   public modalDishes:any[] = [];
 
+  @Output()
+  public customDish = new EventEmitter<any[]>();
+
   constructor(private activeModale: NgbActiveModal){}
 
   public closeModal():void
   {
-    this.activeModale.close();
+    this.customDish.emit(this.modalDishes);
+
+    this.activeModale.close(this.modalDishes);
+  }
+
+  public addDish(addDish:Dish, amount:number)
+  {
+    for(let dish of this.modalDishes)
+    {
+      if(dish.dish.name === addDish.name)
+      {
+        dish.orderAmount+= amount;
+
+        if(dish.orderAmount < 0) dish.orderAmount = 0;
+      }
+    }
+
   }
 
 }
