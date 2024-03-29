@@ -27,6 +27,8 @@ import { HeaderRestaurantComponent } from '../header-restaurant/header-restauran
 export class OrderComponent {
   public table$!: Observable<Table>;
   public order$?: Observable<Order>;
+  public _currentTableId: string | null =
+    this.route.snapshot.paramMap.get('id');
 
   public tableSelectOptions!: string[];
   public orderSelectOptions!: string[];
@@ -48,7 +50,7 @@ export class OrderComponent {
     //récupérer une commande déja existante => limiter les commandes à 1 par table
     this.order$ = this.orderService.getOrderByTableId(tableId);
 
-    this.tableSelectOptions = ['Libre', 'Occupé'];
+    this.tableSelectOptions = ['Disponible', 'Occupé'];
     this.orderSelectOptions = ['Nouvelle', 'Prise', 'Servie', 'Payée'];
   }
 

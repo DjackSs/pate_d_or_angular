@@ -1,11 +1,23 @@
-
-<div>
-
-    <button type="button" class="btn btn-secondary  btn-lg" *ngFor="let category of dishesCategories" (click)="dishModal(category)">{{category.libelle}}</button>
-   
-</div>
-<div>
-
-    <button type="button" class="btn btn-primary btn-lg" (click)="saveDishes()">Enregistrer</button> 
-
+<div class="d-flex flex-column align-items-center justify-content-center h-100">
+  <div class="container flex-grow-1 h-100">
+    <div class="row h-100 justify-content-center">
+      <button
+        type="button"
+        class="border-custom-peachfuzz boxshadow-custom-peachfuzz btn btn-dark btn-lg col-4 m-4"
+        *ngFor="let category of dishesCategories"
+        (click)="dishModal(category)"
+      >
+        {{ category.libelle }}
+      </button>
+    </div>
+  </div>
+  <div class="mt-auto">
+    <button
+      type="button"
+      class="btn btn-custom-peachfuzz btn-lg"
+      (click)="saveDishes()"
+    >
+      Enregistrer
+    </button>
+  </div>
 </div>
