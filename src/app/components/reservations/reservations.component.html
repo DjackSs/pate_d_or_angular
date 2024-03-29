@@ -18,12 +18,12 @@
   >
     <button
       class="d-flex gap-1 btn btn-custom-peachfuzz"
-      (click)="displayReservationsStateToManage()"
+      (click)="displayReservationsStateToManage('hold')"
     >
       En cours ⏳</button
     ><button
       class="d-flex gap-1 btn btn-custom-peachfuzz"
-      (click)="displayReservationsToManage()"
+      (click)="displayReservationsToManage('gran')"
     >
       Validées ✓
     </button>
@@ -39,8 +39,18 @@
     [reservations]="reservations"
     [state]="'gran'"
   ></app-reservation>
+
+  <ng-container
+    *ngIf="areReservationsEmptyOrNotSelectedState(reservations, selectedState)"
+  >
+    <h2 class="text-center">0 réservations</h2>
+  </ng-container>
 </section>
 
 <ng-template #loading>
-  <h2>Loading</h2>
+  <h2
+    class="h-100 d-flex justify-content-center align-items-center text-center text-light"
+  >
+    Chargement ...
+  </h2>
 </ng-template>

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, tap } from 'rxjs';
+import { Observable, Subject, map, tap } from 'rxjs';
 import { Reservation, Reservations } from '../entities/reservation';
 
 @Injectable({
@@ -17,26 +17,38 @@ export class ReservationService {
     state: 'gran',
   };
   private readonly _denyReservationState: Object = {
-    state: 'deny',
+    state: 'deni',
   };
   private _reservations$ = new Subject<Reservations>();
 
   public readonly reservations$: Observable<Reservations> =
     this._reservations$.asObservable();
-  public reservation?: Reservation;
 
   constructor(private _httpClient: HttpClient) {}
 
   public getAllByRestaurantId(restaurantId: string | null): void {
-    this._httpClient.get<Reservations>(`${this._endpoint}/restaurant/${restaurantId}`).subscribe((reservations) => 
-      {
+    this._httpClient
+      .get<Reservations>(`${this._endpoint}/restaurant/${restaurantId}`)
+      .pipe(
+        map((reservation) =>
+          reservation.sort((a, b) =>
+            a.reservationTime.localeCompare(b.reservationTime)
+          )
+        )
+      )
+      .subscribe((reservations) => {
         this._reservations$.next(reservations);
       });
   }
 
-  public updateReservationState(reservation: Reservation,isGranted: boolean): void 
-  {
-    this._httpClient.put<Reservation>( `${this._endpoint}/${reservation.id}`, isGranted ? this._granReservationState : this._denyReservationState,
+  public updateReservationState(
+    reservation: Reservation,
+    isGranted: boolean
+  ): void {
+    this._httpClient
+      .put<Reservation>(
+        `${this._endpoint}/${reservation.id}`,
+        isGranted ? this._granReservationState : this._denyReservationState,
         this._httpHeadersOptions
       )
       .pipe(
