@@ -1,19 +1,21 @@
-<article *ngIf="table$ | async as table else loading">
-
+<article *ngIf="table$ | async as table; else loading" class="container">
   <div>
-    <app-select [libelle]="'Table'" [options]="tableSelectOptions" (choiceValue)="updateTable(table, $event)"></app-select>
-    <app-select [libelle]="'Commande'" [options]="orderSelectOptions" (choiceValue)="updateOrder(table, $event)" *ngIf="table.state"></app-select>
+    <app-select
+      [libelle]="'Table'"
+      [options]="tableSelectOptions"
+      (choiceValue)="updateTable(table, $event)"
+    ></app-select>
+    <app-select
+      [libelle]="'Commande'"
+      [options]="orderSelectOptions"
+      (choiceValue)="updateOrder(table, $event)"
+      *ngIf="table.state"
+    ></app-select>
   </div>
 
-  <ng-container *ngIf="order$ |async as order else loading">
-
+  <ng-container *ngIf="order$ | async as order; else loading">
     <app-dishes [order]="order" [card]="table.restaurant.card"></app-dishes>
-
   </ng-container>
-
-
-
- 
 </article>
 
 <ng-template #loading>
