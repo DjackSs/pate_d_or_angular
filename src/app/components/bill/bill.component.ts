@@ -17,18 +17,18 @@ import { ModalComponent } from '../modal/modal.component';
 import { AlertCustomComponent } from '../alert-custom/alert-custom.component';
 import { RestaurantService } from '../../services/restaurant.service';
 import { Restaurant } from '../../entities/Restaurant';
+import { HeaderRestaurantComponent } from '../header-restaurant/header-restaurant.component';
 
 @Component({
   selector: 'app-bill',
   standalone: true,
-  imports: [LogoutComponent, CommonModule, AlertCustomComponent],
+  imports: [LogoutComponent, CommonModule, AlertCustomComponent, HeaderRestaurantComponent],
   templateUrl: './bill.component.html',
   styleUrl: './bill.component.scss',
 })
 export class BillComponent implements OnInit {
   public bills$!: Observable<Bills>;
   public restaurant!: Restaurant | null;
-  public _currentRestaurant?: Restaurant | null;
 
   @Input()
   public header?: string;
@@ -61,7 +61,6 @@ export class BillComponent implements OnInit {
       
       );
     this.navbarService.setShowNavbar(true);
-    this._currentRestaurant = this.restaurantService.getRestaurant();
   }
 
   getBillsForTable(bills: Bills, tableNumber: number): Bill[] {

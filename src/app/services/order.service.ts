@@ -12,7 +12,7 @@ export class OrderService
 
   constructor(private httpClient: HttpClient) { }
 
-  //------------------------------------------
+  //==================================================
   //get
 
   public getAllorder():Observable<Orders>
@@ -22,6 +22,8 @@ export class OrderService
     return this.httpClient.get<Orders>(url);
   }
 
+  //-------------------------------------------------
+
   public getOrderById(id:number):Observable<Order>
   {
     const url:string = "http://localhost:8080/pate_d_or/commandes/"+String(id);
@@ -29,6 +31,8 @@ export class OrderService
     return this.httpClient.get<Order>(url);
 
   }
+
+  //-------------------------------------------------
 
   public getOrderByTableId(id:number):Observable<Order>
   {
@@ -41,7 +45,7 @@ export class OrderService
     
   }
 
-  //------------------------------------------
+  //==================================================
   //post
 
   public createOrder(table:Table):Observable<Order>
@@ -58,7 +62,7 @@ export class OrderService
     
   }
 
-  //------------------------------------------
+  //==================================================
   //put
 
   public updateOrderStatus(orderId:number, newState:string):void
@@ -74,6 +78,8 @@ export class OrderService
     this.httpClient.put<Order>(url, body).subscribe();
 
   }
+
+  //-------------------------------------------------
 
   public updateOrderDishes(order:Order):void
   {

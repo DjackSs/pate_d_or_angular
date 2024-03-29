@@ -1,10 +1,4 @@
-<section
-  class="border-custom-peachfuzz px-2 pb-2 border-top-0 border-end-0 border-start-0"
->
-  <h1 class="playfair-font color-custom-peachfuzz h1 text-center mt-4">
-    {{ _currentRestaurant?.name }}
-  </h1>
-</section>
+<app-header-restaurant></app-header-restaurant>
 
 <section *ngIf="bills$ | async as bills" class="main-container">
   <h1 class="h1">Commandes soldées</h1>
@@ -16,8 +10,13 @@
     >
       <div class="custom-container-col">
         <div class="custom-container-row">
-          <h6>Table n°{{ table }} </h6>
-          <button class="btn-bills" (click)="generateBill(getBillsForTable(bills, table))">Générer l'addition</button>
+          <h6>Table n°{{ table }}</h6>
+          <button
+            class="btn-bills"
+            (click)="generateBill(getBillsForTable(bills, table))"
+          >
+            Générer l'addition
+          </button>
         </div>
       </div>
     </div>
