@@ -22,10 +22,6 @@ export class SelectComponent
 
   constructor(){}
 
-  ngOnInt()
-  {
-    console.log(this.options);
-  }
 
   public onChange(value:string)
   {

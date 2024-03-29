@@ -4,6 +4,7 @@ import { Order } from '../../entities/order';
 import { Card } from '../../entities/Table';
 import { NgbModal,NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { DishModalComponent } from '../dish-modal/dish-modal.component';
+import { OrderService } from '../../services/order.service';
 
 @Component({
   selector: 'app-dishes',
@@ -22,7 +23,7 @@ export class DishesComponent
 
   public dishesCategories!:any[];
 
-  constructor( private modal: NgbModal){}
+  constructor(private modal: NgbModal, private orderService: OrderService){}
 
   ngOnInit()
   {
@@ -47,6 +48,7 @@ export class DishesComponent
        }
     ];
 
+
   }
 
 
@@ -60,38 +62,58 @@ export class DishesComponent
     //3 - attribus une valeure à un attribut du composant de la modale
     component.modalTitle = dishCategory.libelle;
 
-    
-
     for(let dish of this.card.dishes)
     {
-      let dishAmount:any = {};
+      let dishAmount:any = {}
 
       if(dish.category === dishCategory.value)
       {
         dishAmount.dish = dish;
 
         let count:number = 0;
-
-        for(let orderDish of this.order.dishes)
+        
+        if(this.order.dishes)
         {
-          if(orderDish.category === dish.category)
+          for(let orderDish of this.order.dishes)
           {
-            count++;
+            if(orderDish.name === dish.name)
+            {
+              count++;
+            }
           }
+
         }
+        
 
         dishAmount.orderAmount = count;
 
         component.modalDishes.push(dishAmount);
       }
     }
-    
-    
+
+    //récupère l'eventEmiter de la modale
+    modalRef.result.then(result =>
+      {
+        this.order.dishes = this.order.dishes.filter((item) => item.category != dishCategory.value);
+
+        for(let item of result)
+        {
+          for(let i=0; i<item.orderAmount; i++)
+          {
+            this.order.dishes.push(item.dish);
+          }
+        }
+
+      });
 
   }
 
+  
+
   public saveDishes()
   {
+
+    this.orderService.updateOrderDishes(this.order);
 
   }
 
