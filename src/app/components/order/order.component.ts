@@ -51,7 +51,7 @@ export class OrderComponent {
     this.order$ = this.orderService.getOrderByTableId(tableId);
 
     this.tableSelectOptions = ['Disponible', 'Occupé'];
-    this.orderSelectOptions = ['Nouvelle', 'Prise', 'Servie', 'Payée'];
+    this.orderSelectOptions = ['Nouvelle', 'Prise', 'Servie', 'À solder'];
   }
 
   //=========================================================

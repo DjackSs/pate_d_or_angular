@@ -25,17 +25,17 @@
           <button
             type="button"
             class="custom-rounded-btn-1rem d-flex justify-content-center align-items-center btn btn-outline-custom-dark btn-md"
-            (click)="addDish(dish.dish, 1)"
+            (click)="addDish(dish.dish, -1)"
           >
-            +
+            -
           </button>
           <p>{{ dish.orderAmount }}</p>
           <button
             type="button"
             class="custom-rounded-btn-1rem d-flex justify-content-center align-items-center btn btn-outline-dark btn-md"
-            (click)="addDish(dish.dish, -1)"
+            (click)="addDish(dish.dish, 1)"
           >
-            -
+            +
           </button>
         </div>
       </div>

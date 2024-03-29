@@ -11,7 +11,7 @@
       <p class="fs-4 text-light mb-0">Statut table {{ _currentTableId }}</p>
       <app-select
         class="flex-grow-1 flex-sm-grow-0"
-        [libelle]="table.state || 'aucun'"
+        [libelle]="table.state || '---'"
         [options]="tableSelectOptions"
         (choiceValue)="updateTable(table, $event)"
       ></app-select>
@@ -22,7 +22,7 @@
       <p class="fs-4 text-light mb-0">Statut commande</p>
       <app-select
         class="flex-grow-1 flex-sm-grow-0"
-        [libelle]="'aucune'"
+        [libelle]="'---'"
         [options]="orderSelectOptions"
         (choiceValue)="updateOrder(table, $event)"
         *ngIf="table.state"
