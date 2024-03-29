@@ -82,8 +82,10 @@ export class DishesComponent {
     }
 
     //get the modal emiter
-    modalRef.result.then((result) => {
-      if (result) {
+    modalRef.result.then((result) => 
+    {
+      if(result) 
+      {
         this.order.dishes = this.order.dishes.filter(
           (item) => item.category != dishCategory.value
         );

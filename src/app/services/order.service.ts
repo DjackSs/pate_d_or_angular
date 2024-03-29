@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Order, Orders, OrderTable } from '../entities/order';
-import { Observable, map } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 import { Table } from '../entities/Restaurant';
 
 @Injectable({
@@ -9,8 +9,12 @@ import { Table } from '../entities/Restaurant';
 })
 export class OrderService 
 {
+  private _order$ = new Subject<Order>();
+
+  public order$!:Observable<Order>;
 
   constructor(private httpClient: HttpClient) { }
+
 
   //==================================================
   //get
@@ -45,6 +49,20 @@ export class OrderService
     
   }
 
+  // public getOrderByTableId(id:number):void
+  // {
+  //   const url:string = "http://localhost:8080/pate_d_or/commandes/table/"+String(id);
+    
+  //   this.httpClient.get<Orders>(url).pipe(map((result) =>
+  //     {
+        
+  //         this._order$ = result[0];
+       
+
+  //     })).subscribe(result => this._order$ = result);
+    
+  // }
+
   //==================================================
   //post
 
@@ -61,6 +79,20 @@ export class OrderService
     return this.httpClient.post<Order>(url, body);
     
   }
+
+  // public createOrder(table:Table):void
+  // {
+  //   const body =
+  //   {
+  //     state: "take",
+  //     table: table
+  //   }
+
+  //   const url:string ="http://localhost:8080/pate_d_or/commandes";
+
+  //   this.httpClient.post<Order>(url, body).subscribe();
+    
+  // }
 
   //==================================================
   //put
