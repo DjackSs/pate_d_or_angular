@@ -14,6 +14,10 @@
 .custom-container-250 {
   max-width: 250px;
 }
+.custom-rounded-btn-1rem {
+  width: 1.8rem;
+  height: 1.8rem;
+}
 
 .custom-height-80vh {
   max-height: 80vh;
@@ -51,6 +55,9 @@
 }
 .border-custom-peachfuzz:hover {
   border: 1px solid var(--bs-color-peachfuzz);
+}
+.border-custom-dark {
+  border: 1px solid var(--bs-color-dark);
 }
 
 .boxshadow-custom-peachfuzz {
