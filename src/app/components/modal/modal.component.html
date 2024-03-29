@@ -1,17 +1,27 @@
-<section *ngIf="bills && bills.length > 0" class="main-container">
-  <div class="header">
+<section *ngIf="bills && bills.length > 0" class="main-container rounded bg-custom-peachfuzz d-flex flex-column justify-content-center align-items-center overflow-scroll mh-auto">
+  <div class="header py-3">
     <h5>Récapitulatif de la commande</h5>
   </div>
   <div class="container">
-    <div class="body" *ngFor="let bill of bills">
+    <div class="body d-flex justify-content-between align-items-center" *ngFor="let bill of bills">
       <div class="dish-name">{{ bill.dishName }}</div>
       <div class="dish-price">{{ bill.dishPrice | currency : "EUR" }}</div>
     </div>
+    <p class="text-center">- - -</p>
     <div class="container-value">
-      <div class="subtotal">Montant HT: {{ calculateSubtotal() | currency: 'EUR' }}</div>
-      <div class="tva">TVA (20%): {{ calculateTVA() | currency: 'EUR' }}</div>
-      <div class="total">Montant TTC: {{ calculateTotalAmount() | currency: 'EUR' }}</div>
+      <div class="amount-value d-flex justify-content-between align-items-center">
+        <div class="subtotal">Montant HT: </div>
+        <div>{{ calculateSubtotal() | currency: 'EUR' }}</div>
+      </div>
+      <div class="amount-value d-flex justify-content-between align-items-center">
+        <div class="tva"><i>TVA (20%): </i></div>
+        <div> <i>{{ calculateTVA() | currency: 'EUR' }}</i></div>
+      </div>
+      <div class="amount-value d-flex justify-content-between align-items-center">
+        <div class="total"><b>Montant TTC: </b></div> 
+        <div> <b>{{ calculateTotalAmount() | currency: 'EUR' }}</b></div>
+      </div>
     </div>
   </div>
-  <button class="btn btn-custom-dark">Imprimer addition</button>
+  <button class="btn btn-custom-dark my-3">Imprimer addition</button>
 </section>
