@@ -57,8 +57,10 @@ export class DishesComponent
 
     //1 - ouvre la modale avec le composant dedan
     const modalRef: NgbModalRef = this.modal.open(DishModalComponent, {size: "lg"});
+
     //2 - récupère le composant dans la modale
     const component: DishModalComponent = modalRef.componentInstance;
+    
     //3 - attribus une valeure à un attribut du composant de la modale
     component.modalTitle = dishCategory.libelle;
 
