@@ -3,6 +3,7 @@ import { Component, Input } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Reservation, Reservations } from '../../entities/reservation';
 import { ReservationService } from '../../services/reservation.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reservation',
@@ -19,7 +20,7 @@ export class ReservationComponent {
   @Input()
   public state!: string;
 
-  constructor(private _reservationService: ReservationService) {}
+  constructor(private _reservationService: ReservationService, private router: Router) {}
 
   public yesToReservation(reservation: Reservation): void {
     this._reservationService.updateReservationState(reservation, true);
@@ -29,8 +30,11 @@ export class ReservationComponent {
     this._reservationService.updateReservationState(reservation, false);
   }
 
-  public handleReservationTable(): void {
-    // Handle redirection to the table reserved
+  public handleReservationTable(tableId:number): void {
+
+    const url:string = "order/table/"+Number(tableId);
+    this.router.navigateByUrl(url);
+
   }
 
   ngOnDestroy(): void {

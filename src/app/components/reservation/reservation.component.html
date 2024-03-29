@@ -39,7 +39,7 @@
             <ng-container *ngIf="state === 'gran'">
               <button
                 class="d-flex gap-1 btn btn-custom-peachfuzz"
-                (click)="handleReservationTable()"
+                (click)="handleReservationTable(reservation.table.id)"
               >
                 Gérer 🪑
               </button>

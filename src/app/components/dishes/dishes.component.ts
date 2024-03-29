@@ -46,15 +46,17 @@ export class DishesComponent {
   }
 
   public dishModal(dishCategory: any) {
-    //1 - ouvre la modale avec le composant dedan
+
+    //1 - open the modal with component
     const modalRef: NgbModalRef = this.modal.open(DishModalComponent, {
       size: 'lg',
       centered: true,
       scrollable: true,
     });
-    //2 - récupère le composant dans la modale
+    //2 - get the component within the modal
     const component: DishModalComponent = modalRef.componentInstance;
-    //3 - attribus une valeure à un attribut du composant de la modale
+    
+    //3 - set up the component's attribute
     component.modalTitle = dishCategory.libelle;
 
     for (let dish of this.card.dishes) {
@@ -79,7 +81,7 @@ export class DishesComponent {
       }
     }
 
-    //récupère l'eventEmiter de la modale
+    //get the modal emiter
     modalRef.result.then((result) => {
       if (result) {
         this.order.dishes = this.order.dishes.filter(
