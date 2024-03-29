@@ -1,30 +1,43 @@
 <section
-    *ngIf="tables$ | async as tables else loading"
-  class="container text-light d-flex flex-column justify-content-center align-items-center gap-4 position-absolute top-50 start-50 translate-middle"
+  class="border-custom-peachfuzz px-2 pb-2 border-top-0 border-end-0 border-start-0"
 >
-  <h1 class="h1">Tables</h1>
+  <h1 class="playfair-font color-custom-peachfuzz h1 text-center mt-4">
+    {{ _currentRestaurant?.name }}
+  </h1>
+</section>
 
-  <p class="h4 fw-light fst-italic">Choisissez votre table</p>
+<section *ngIf="tables$ | async as tables; else loading" class="position-absolute text-light text-center top-50 start-50 translate-middle overflow-scroll custom-height-80vh w-100">
+
+  <h1 class="h1">Tables</h1>
+  <p class="table-description">Choisissez votre table</p>
 
   <div class="container">
-    <div class="custom-container-600 mx-auto row">
-      <div class="col col-md-6" *ngFor="let table of tables">
-
-        <div (click)="toOrder(table)">
-
-            <h2>N° de table :{{table.id}}</h2>
-            <p>Places :{{table.numberPlace}}</p>
-            <p>satus {{table.state}}</p>
-
+    <div class="row row-cols-1 row-cols-md-2 g-3"> <!-- Utilisez la classe g-4 pour l'espace entre les colonnes -->
+      <div class="col-6 d-flex align-items-stretch" *ngFor="let table of tables" (click)="toOrder(table)">
+        <div class="card bg-custom-peachfuzz color-custom-dark w-100">
+          <div class="card-body p-1">
+            <h2 class="card-title">Table n°{{ table.id }}</h2>
+            <p class="card-text">{{ table.numberPlace }} couverts 🍽️</p>
+            <div class="table-state">
+              @switch (table.state) {
+                @case (null) {
+                  <p class="state-null">DISPONIBLE</p>
+                }
+                @case ('pres') {
+                  <p class="state-pres">OCCUPÉE</p>
+                }
+              }
+            </div>
+          </div>
         </div>
-
       </div>
-
     </div>
   </div>
+
 </section>
 
 <ng-template #loading>
-    <app-loader></app-loader>
+  <app-loader></app-loader>
 </ng-template>
-<app-navbar></app-navbar>
+
+<app-navbar class="app-navbar"></app-navbar>

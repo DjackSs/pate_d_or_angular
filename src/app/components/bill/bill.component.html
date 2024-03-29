@@ -1,4 +1,10 @@
-<app-logout></app-logout>
+<section
+  class="border-custom-peachfuzz px-2 pb-2 border-top-0 border-end-0 border-start-0"
+>
+  <h1 class="playfair-font color-custom-peachfuzz h1 text-center mt-4">
+    {{ _currentRestaurant?.name }}
+  </h1>
+</section>
 
 <section *ngIf="bills$ | async as bills" class="main-container">
   <h1 class="h1">Commandes soldées</h1>

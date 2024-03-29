@@ -15,6 +15,8 @@ import { NavbarService } from '../../services/navbar.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '../modal/modal.component';
 import { AlertCustomComponent } from '../alert-custom/alert-custom.component';
+import { RestaurantService } from '../../services/restaurant.service';
+import { Restaurant } from '../../entities/Restaurant';
 
 @Component({
   selector: 'app-bill',
@@ -25,6 +27,8 @@ import { AlertCustomComponent } from '../alert-custom/alert-custom.component';
 })
 export class BillComponent implements OnInit {
   public bills$!: Observable<Bills>;
+  public restaurant!: Restaurant | null;
+  public _currentRestaurant?: Restaurant | null;
 
   @Input()
   public header?: string;
@@ -42,14 +46,22 @@ export class BillComponent implements OnInit {
 
 
   constructor(
+    private restaurantService: RestaurantService,
     private billService: BillService,
     private navbarService: NavbarService,
     private ngbModal: NgbModal
   ) {}
 
   ngOnInit(): void {
+    this.restaurant = this.restaurantService.getRestaurant();
+    
+    if (this.restaurant)
+    this.bills$ = this.billService.getBillsByIdRestaurant(
+      this.restaurant.id
+      
+      );
     this.navbarService.setShowNavbar(true);
-    this.bills$ = this.billService.getBills();
+    this._currentRestaurant = this.restaurantService.getRestaurant();
   }
 
   getBillsForTable(bills: Bills, tableNumber: number): Bill[] {

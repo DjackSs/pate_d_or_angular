@@ -1,5 +1,11 @@
 .container-bottom-nav {
   border-top: 1px solid #ffdab9;
+  position: fixed;
+  top: 100;
+  left: 0;
+  width: 100%; /* Assurez-vous que la navbar prend toute la largeur */
+  z-index: 1000; /* Assurez-vous que la navbar est au-dessus du contenu */
+  /* Ajoutez des styles supplémentaires selon vos besoins */
   i {
     color: #ffdab9;
     width: 24px;
