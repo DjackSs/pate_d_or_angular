@@ -1,24 +1,41 @@
 <app-header-restaurant></app-header-restaurant>
 
-<article *ngIf="table$ | async as table; else loading" class="container">
-  <div>
-    <app-select
-      [libelle]="'Table'"
-      [options]="tableSelectOptions"
-      (choiceValue)="updateTable(table, $event)"
-    ></app-select>
-    <app-select
-      [libelle]="'Commande'"
-      [options]="orderSelectOptions"
-      (choiceValue)="updateOrder(table, $event)"
-      *ngIf="table.state"
-    ></app-select>
-  </div>
+<section
+  *ngIf="table$ | async as table; else loading"
+  class="container custom-container-600 h-75 d-flex flex-column align-items-center gap-4 mt-4"
+>
+  <article class="w-100 d-flex flex-column gap-2">
+    <div
+      class="d-flex align-items-center justify-content-between justify-content-sm-center gap-4"
+    >
+      <p class="fs-4 text-light mb-0">Statut table {{ _currentTableId }}</p>
+      <app-select
+        class="flex-grow-1 flex-sm-grow-0"
+        [libelle]="table.state || 'aucun'"
+        [options]="tableSelectOptions"
+        (choiceValue)="updateTable(table, $event)"
+      ></app-select>
+    </div>
+    <div
+      class="d-flex align-items-center justify-content-between justify-content-sm-center gap-4"
+    >
+      <p class="fs-4 text-light mb-0">Statut commande</p>
+      <app-select
+        class="flex-grow-1 flex-sm-grow-0"
+        [libelle]="'aucune'"
+        [options]="orderSelectOptions"
+        (choiceValue)="updateOrder(table, $event)"
+        *ngIf="table.state"
+      ></app-select>
+    </div>
+  </article>
 
-  <ng-container *ngIf="order$ | async as order; else loading">
-    <app-dishes [order]="order" [card]="table.restaurant.card"></app-dishes>
-  </ng-container>
-</article>
+  <article class="flex-grow-1">
+    <ng-container *ngIf="order$ | async as order; else loading">
+      <app-dishes [order]="order" [card]="table.restaurant.card"></app-dishes>
+    </ng-container>
+  </article>
+</section>
 
 <ng-template #loading>
   <app-loader></app-loader>
