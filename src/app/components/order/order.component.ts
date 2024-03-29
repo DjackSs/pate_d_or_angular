@@ -38,7 +38,7 @@ export class OrderComponent {
   constructor(
     private orderService: OrderService,
     private tableService: TableService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
@@ -50,7 +50,6 @@ export class OrderComponent {
     //récupérer une commande déja existante => limiter les commandes à 1 par table
     //
     this.order$ = this.orderService.getOrderByTableId(tableId);
-    // this.order$ = this.orderService.order$;
 
     this.tableSelectOptions = ['Disponible', 'Occupé'];
     this.orderSelectOptions = ['Nouvelle', 'Prise', 'Servie', 'À solder'];
@@ -84,12 +83,9 @@ export class OrderComponent {
     switch (orderSelectValue) {
       case this.orderSelectOptions[0]:
         this.order$?.subscribe((result) => {
-          if (!result) 
-          {
+          if (!result) {
             this.order$ = this.orderService.createOrder(table);
-            window.location.reload();
           }
-
         });
         break;
       case this.orderSelectOptions[1]:

@@ -46,7 +46,6 @@ export class DishesComponent {
   }
 
   public dishModal(dishCategory: any) {
-
     //1 - open the modal with component
     const modalRef: NgbModalRef = this.modal.open(DishModalComponent, {
       size: 'lg',
@@ -55,7 +54,7 @@ export class DishesComponent {
     });
     //2 - get the component within the modal
     const component: DishModalComponent = modalRef.componentInstance;
-    
+
     //3 - set up the component's attribute
     component.modalTitle = dishCategory.libelle;
 
@@ -82,10 +81,10 @@ export class DishesComponent {
     }
 
     //get the modal emiter
-    modalRef.result.then((result) => 
-    {
-      if(result) 
-      {
+    modalRef.result.then((result) => {
+      if (result) {
+        if (!this.order.dishes) this.order.dishes = [];
+
         this.order.dishes = this.order.dishes.filter(
           (item) => item.category != dishCategory.value
         );
