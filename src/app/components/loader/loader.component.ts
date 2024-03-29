@@ -22,7 +22,7 @@ export class LoaderComponent implements OnInit {
   ngOnInit(): void {
 
     this.navbarService.setShowNavbar(false);
-    const delay:number = 3000;
+    const delay:number = 1000;
 
     setTimeout(() => {
       this.router.url == '/'
