@@ -11,21 +11,18 @@ import { Router } from '@angular/router';
 
 import { NavbarService } from '../../services/navbar.service';
 import { NavbarComponent } from '../navbar/navbar.component';
-
+import { HeaderRestaurantComponent } from '../header-restaurant/header-restaurant.component';
 
 @Component({
   selector: 'app-table-list',
   standalone: true,
-  imports: [CommonModule, LoaderComponent, NavbarComponent, OrderComponent],
+  imports: [CommonModule, LoaderComponent, NavbarComponent, OrderComponent, HeaderRestaurantComponent],
   templateUrl: './table-list.component.html',
   styleUrl: './table-list.component.scss',
 })
 export class TableListComponent {
   public tables$!: Observable<Table[]>;
   public restaurant!: Restaurant | null;
-  public _currentRestaurant?: Restaurant | null;
-  
-
 
   constructor(
     private restaurantService: RestaurantService,
@@ -34,32 +31,17 @@ export class TableListComponent {
     private _router: Router
   ) {}
 
-
   ngOnInit() {
     this.restaurant = this.restaurantService.getRestaurant();
-    
+
     if (this.restaurant)
-    this.tables$ = this.tableService.getTablesByIdRestaurant(
-      this.restaurant.id
-      
+      this.tables$ = this.tableService.getTablesByIdRestaurant(
+        this.restaurant.id
       );
     this.navbarService.setShowNavbar(true);
-    this._currentRestaurant = this.restaurantService.getRestaurant();
   }
 
-
-  public toOrder(table:Table)
-  {
-
+  public toOrder(table: Table) {
     this._router.navigateByUrl(`order/table/${table.id}`);
-
   }
-
-
-
-
-
-      
-    
-
 }

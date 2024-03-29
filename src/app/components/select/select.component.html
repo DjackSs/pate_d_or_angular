@@ -1,5 +1,10 @@
-
-<select class="form-select" aria-label="Default select example" (change)="onChange($any($event.target).value)" >
-    <option selected>{{libelle}}</option>
-    <option *ngFor="let option of options" value={{option}}>{{option}}</option>
-  </select>
+<select
+  class="form-select form-select-lg d-flex"
+  aria-label="Large select example"
+  (change)="onChange($any($event.target).value)"
+>
+  <option class="w-100" selected>{{ libelle }}</option>
+  <option *ngFor="let option of options" value="{{ option }}">
+    {{ option }}
+  </option>
+</select>

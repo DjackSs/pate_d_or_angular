@@ -6,13 +6,13 @@ import { Restaurant } from '../../entities/Restaurant';
 import { Reservations } from '../../entities/reservation';
 import { NavbarService } from '../../services/navbar.service';
 import { ReservationService } from '../../services/reservation.service';
-import { RestaurantService } from '../../services/restaurant.service';
 import { ReservationComponent } from '../reservation/reservation.component';
+import { HeaderRestaurantComponent } from '../header-restaurant/header-restaurant.component';
 
 @Component({
   selector: 'app-reservations',
   standalone: true,
-  imports: [CommonModule, ReservationComponent],
+  imports: [CommonModule, ReservationComponent, HeaderRestaurantComponent],
   templateUrl: './reservations.component.html',
   styleUrl: './reservations.component.scss',
 })
@@ -28,8 +28,7 @@ export class ReservationsComponent implements OnInit, OnDestroy {
   constructor(
     private _reservationService: ReservationService,
     private _route: ActivatedRoute,
-    private navbarService: NavbarService,
-    private _restaurantService: RestaurantService
+    private navbarService: NavbarService
   ) {}
 
   ngOnInit(): void {
@@ -40,10 +39,6 @@ export class ReservationsComponent implements OnInit, OnDestroy {
     this.reservations$ = this._reservationService.reservations$;
 
     this._reservationService.getAllByRestaurantId(restaurantId);
-
-    this.currentRestaurant = this._restaurantService.getRestaurant();
-
-    console.log(this.reservations$.subscribe((res) => console.log(res)));
   }
 
   public areReservationsEmptyOrNotSelectedState(
