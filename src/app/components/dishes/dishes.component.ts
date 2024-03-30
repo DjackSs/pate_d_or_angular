@@ -86,6 +86,8 @@ export class DishesComponent {
     {
       if(result) 
       {
+        if(!this.order.dishes) this.order.dishes = [];
+        
         this.order.dishes = this.order.dishes.filter(
           (item) => item.category != dishCategory.value
         );

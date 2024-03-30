@@ -49,19 +49,6 @@ export class OrderService
     
   }
 
-  // public getOrderByTableId(id:number):void
-  // {
-  //   const url:string = "http://localhost:8080/pate_d_or/commandes/table/"+String(id);
-    
-  //   this.httpClient.get<Orders>(url).pipe(map((result) =>
-  //     {
-        
-  //         this._order$ = result[0];
-       
-
-  //     })).subscribe(result => this._order$ = result);
-    
-  // }
 
   //==================================================
   //post
@@ -80,19 +67,6 @@ export class OrderService
     
   }
 
-  // public createOrder(table:Table):void
-  // {
-  //   const body =
-  //   {
-  //     state: "take",
-  //     table: table
-  //   }
-
-  //   const url:string ="http://localhost:8080/pate_d_or/commandes";
-
-  //   this.httpClient.post<Order>(url, body).subscribe();
-    
-  // }
 
   //==================================================
   //put

@@ -48,9 +48,7 @@ export class OrderComponent {
     this.table$ = this.tableService.getTableById(tableId);
 
     //récupérer une commande déja existante => limiter les commandes à 1 par table
-    //
     this.order$ = this.orderService.getOrderByTableId(tableId);
-    // this.order$ = this.orderService.order$;
 
     this.tableSelectOptions = ['Disponible', 'Occupé'];
     this.orderSelectOptions = ['Nouvelle', 'Prise', 'Servie', 'À solder'];
@@ -87,7 +85,6 @@ export class OrderComponent {
           if (!result) 
           {
             this.order$ = this.orderService.createOrder(table);
-            window.location.reload();
           }
 
         });
