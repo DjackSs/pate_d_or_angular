@@ -48,7 +48,6 @@ export class OrderComponent {
     this.table$ = this.tableService.getTableById(tableId);
 
     //récupérer une commande déja existante => limiter les commandes à 1 par table
-    //
     this.order$ = this.orderService.getOrderByTableId(tableId);
 
     this.tableSelectOptions = ['Disponible', 'Occupé'];
