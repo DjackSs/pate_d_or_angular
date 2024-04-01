@@ -15,7 +15,9 @@
         *ngFor="let table of tables"
         (click)="toOrder(table)"
       >
-        <div class="card bg-custom-peachfuzz color-custom-dark w-100">
+        <div
+          class="btn btn-custom-peachfuzz card bg-custom-peachfuzz color-custom-dark w-100"
+        >
           <div class="card-body p-1">
             <h2 class="card-title">Table n°{{ table.id }}</h2>
             <p class="card-text">{{ table.numberPlace }} couverts 🍽️</p>
