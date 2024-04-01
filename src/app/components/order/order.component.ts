@@ -79,6 +79,7 @@ export class OrderComponent {
   //-----------------------------------------------------------
 
   public updateOrder(table: Table, orderSelectValue: string) {
+    this.order$ = this.orderService.getOrderByTableId(table.id);
     switch (orderSelectValue) {
       case this.orderSelectOptions[0]:
         this.order$?.subscribe((result) => {
