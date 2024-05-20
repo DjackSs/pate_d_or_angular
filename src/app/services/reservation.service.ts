@@ -1,7 +1,9 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, map, tap } from 'rxjs';
+import { Observable, Subject, catchError, map, tap } from 'rxjs';
 import { Reservation, Reservations } from '../entities/reservation';
+import { ReservationsComponent } from '../components/reservations/reservations.component';
+
 
 @Injectable({
   providedIn: 'root',
@@ -26,19 +28,22 @@ export class ReservationService {
 
   constructor(private _httpClient: HttpClient) {}
 
-  public getAllByRestaurantId(restaurantId: string | null): void {
-    this._httpClient
-      .get<Reservations>(`${this._endpoint}/restaurant/${restaurantId}`)
-      .pipe(
-        map((reservation) =>
-          reservation.sort((a, b) =>
-            a.reservationTime.localeCompare(b.reservationTime)
-          )
+  public getAllByRestaurantId(restaurantId: string | null): void 
+  {
+  
+    this._httpClient.get<Reservations>(`${this._endpoint}/restaurant/${restaurantId}`).pipe
+    (
+      map((reservation) =>
+        reservation.sort((a, b) =>
+          a.reservationTime.localeCompare(b.reservationTime)
         )
+       
       )
-      .subscribe((reservations) => {
-        this._reservations$.next(reservations);
-      });
+    )
+    .subscribe((reservations) => {
+      this._reservations$.next(reservations);
+    });
+    
   }
 
   public updateReservationState(
@@ -59,4 +64,5 @@ export class ReservationService {
       )
       .subscribe();
   }
+
 }

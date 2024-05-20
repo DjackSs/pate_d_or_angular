@@ -21,7 +21,7 @@ export class OrderService
 
   public getAllorder():Observable<Orders>
   {
-    const url:string = "http://localhost:8080/pate_d_or/commandes";
+    const url:string = "http://localhost:8080/pate_d_or/commande";
 
     return this.httpClient.get<Orders>(url);
   }
@@ -30,7 +30,7 @@ export class OrderService
 
   public getOrderById(id:number):Observable<Order>
   {
-    const url:string = "http://localhost:8080/pate_d_or/commandes/"+String(id);
+    const url:string = "http://localhost:8080/pate_d_or/commande/"+String(id);
 
     return this.httpClient.get<Order>(url);
 
@@ -40,12 +40,10 @@ export class OrderService
 
   public getOrderByTableId(id:number):Observable<Order>
   {
-    const url:string = "http://localhost:8080/pate_d_or/commandes/table/"+String(id);
+    const url:string = "http://localhost:8080/pate_d_or/commande/table/"+String(id);
     
-    return this.httpClient.get<Orders>(url).pipe(map((result) =>
-      {
-         return result[0];
-      }));
+    return this.httpClient.get<Order>(url);
+     
     
   }
 
@@ -61,7 +59,7 @@ export class OrderService
       table: table
     }
 
-    const url:string ="http://localhost:8080/pate_d_or/commandes";
+    const url:string ="http://localhost:8080/pate_d_or/commande";
 
     return this.httpClient.post<Order>(url, body);
     
@@ -79,7 +77,7 @@ export class OrderService
       state: newState
     }
 
-    const url:string ="http://localhost:8080/pate_d_or/commandes/"+Number(orderId)+"/modifier-etat";
+    const url:string ="http://localhost:8080/pate_d_or/commande/"+Number(orderId);
 
     this.httpClient.put<Order>(url, body).subscribe();
 
@@ -90,7 +88,7 @@ export class OrderService
   public updateOrderDishes(order:Order):void
   {
 
-    const url:string ="http://localhost:8080/pate_d_or/commandes/"+Number(order.id)+"/ajouter-plats";
+    const url:string ="http://localhost:8080/pate_d_or/commande/"+Number(order.id)+"/ajouter-plats";
 
     this.httpClient.put<Order>(url, order).subscribe();
 

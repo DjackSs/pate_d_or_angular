@@ -2,7 +2,7 @@
 
 <section
   class="custom-container-600 container text-light d-flex flex-column justify-content-center align-items-center gap-4"
-  *ngIf="reservations$ | async as reservations"
+  *ngIf="reservations$ | async as reservations else loading"
 >
   <article
     class="custom-container-600 container my-4 d-flex gap-2 justify-content-center"
