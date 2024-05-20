@@ -3,7 +3,7 @@ import { User } from '../entities/user';
 import { Router } from '@angular/router';
 import { StorageService } from './storage.service';
 import { Observable, Subject, catchError, map, of } from 'rxjs';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -42,7 +42,7 @@ export class LoginService {
 
   public logIn(email: string, password: string): Observable<User | null> {
     return this._httpClient
-      .post<User>(`${this.endpoint}/login`, {
+      .post<User>(`${this.endpoint}/pate_d_or/user/login`, {
         email,
         password,
       })
@@ -71,7 +71,13 @@ export class LoginService {
   //----------------------------------
   //logout
 
-  public logout(): void {
+  public logout(): void 
+  {
+    const header = new HttpHeaders();
+    header.set("token", this.tokenKey);
+    
+    this._httpClient.get(`${this.endpoint}/pate_d_or/user/logout`, {headers: header}).subscribe();
+
     this._storageService.delete(this.userKey);
     this._storageService.delete(this.tokenKey);
   }

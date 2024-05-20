@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
@@ -8,6 +9,7 @@ import { NavbarService } from '../../services/navbar.service';
 import { ReservationService } from '../../services/reservation.service';
 import { ReservationComponent } from '../reservation/reservation.component';
 import { HeaderRestaurantComponent } from '../header-restaurant/header-restaurant.component';
+
 
 @Component({
   selector: 'app-reservations',
@@ -24,11 +26,13 @@ export class ReservationsComponent implements OnInit, OnDestroy {
   public isStateToManage?: boolean = false;
   public isGranToManage?: boolean = false;
   public selectedState: string = '';
+  public error?: String;
 
   constructor(
     private _reservationService: ReservationService,
     private _route: ActivatedRoute,
     private navbarService: NavbarService
+    
   ) {}
 
   ngOnInit(): void {
@@ -39,6 +43,7 @@ export class ReservationsComponent implements OnInit, OnDestroy {
     this.reservations$ = this._reservationService.reservations$;
 
     this._reservationService.getAllByRestaurantId(restaurantId);
+   
   }
 
   public areReservationsEmptyOrNotSelectedState(
